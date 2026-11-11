@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090b08">
+  <meta name="description" content="Проектирование корпусной мебели в Базис Мебельщик. Шкафы, кухни и мебель под размер — от эскиза до файлов для производства.">
+  <title>medoyvmb — проектирование мебели в Базис Мебельщик</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    :root{--bg:#090b08;--panel:#10130e;--panel-2:#151a12;--line:#292d24;--text:#f0f1e9;--muted:#9a9d91;--olive:#a5c46b;--olive-dark:#7c9b45;--warm:#c7b99d;--max:1320px;--ease-out:cubic-bezier(.16,1,.3,1);--ease-soft:cubic-bezier(.22,.61,.36,1)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:82px}
+    body{margin:0;padding-bottom:env(safe-area-inset-bottom);background:var(--bg);color:var(--text);font-family:Inter,Manrope,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+    body.menu-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button,input,textarea{font:inherit}
+    button{color:inherit}
+    img{display:block;max-width:100%}
+    .wrap{width:min(var(--max),calc(100% - 72px));margin-inline:auto}
+    .site-header{height:76px;position:sticky;top:0;z-index:20;background:rgba(9,11,8,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08)}
+    .header-inner{height:100%;display:flex;align-items:center;justify-content:space-between}
+    .brand-group{position:relative;display:flex;align-items:center;gap:12px}
+    .brand{display:flex;align-items:center;font-size:14px;font-weight:600;letter-spacing:-.02em;transition:color .32s var(--ease-soft)}
+    .brand:hover{color:var(--olive)}
+    .brand-mark{display:grid;place-items:center;width:38px;height:38px;background:#1a1e16;border:1px solid #33392a;color:var(--olive);font-family:Georgia,serif;font-size:18px;letter-spacing:.08em}
+    .social-trigger{padding:0;cursor:pointer}
+    .brand-group:hover .social-trigger,.social-trigger:focus-visible,.brand-group.social-open .social-trigger{border-color:var(--olive)}
+    .brand-social-panel{position:absolute;top:calc(100% + 12px);left:0;z-index:30;display:flex;gap:7px;padding:8px;background:#10130e;border:1px solid #39412e;box-shadow:0 12px 30px #0008;opacity:0;visibility:hidden;transform:translateY(-7px) scale(.98);transform-origin:top left;transition:opacity .34s var(--ease-soft),visibility .34s var(--ease-soft),transform .42s var(--ease-out)}
+    .brand-group:hover .brand-social-panel,.brand-group:focus-within .brand-social-panel,.brand-group.social-open .brand-social-panel{opacity:1;visibility:visible;transform:translateY(0)}
+    .brand-social-link{width:36px;height:36px;display:grid;place-items:center;border:1px solid #32382a;background:#151a12;color:var(--olive);transition:background-color .3s var(--ease-soft),border-color .3s var(--ease-soft),transform .38s var(--ease-out)}
+    .brand-social-link:hover,.brand-social-link:focus-visible{background:#1c2415;border-color:var(--olive)}
+    .brand-social-link svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+    .header-actions{display:flex;align-items:center;gap:28px}
+    .availability{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+    .availability:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--olive);margin:0 10px 1px 0;box-shadow:0 0 14px #a5c46b88}
+    .menu-btn{height:42px;padding:0 14px;border:1px solid var(--line);background:transparent;display:flex;align-items:center;gap:12px;cursor:pointer;font-size:11px;text-transform:uppercase;letter-spacing:.14em;transition:color .3s var(--ease-soft),border-color .3s var(--ease-soft),transform .38s var(--ease-out)}
+    .menu-btn:hover{border-color:var(--olive);color:var(--olive);transform:translateY(-1px)}
+    .burger{width:16px;display:grid;gap:5px}.burger i{height:1px;background:currentColor;display:block;transition:transform .38s var(--ease-out)}
+    .menu-open .burger i:first-child{transform:translateY(3px) rotate(45deg)}.menu-open .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
+    .menu-panel{position:fixed;inset:76px 0 0;background:rgba(9,11,8,.97);z-index:19;display:none;align-items:center;justify-content:center}
+    .menu-open .menu-panel{display:flex;animation:menu-panel-in .48s var(--ease-soft) both}
+    .menu-links{display:grid;gap:10px;width:min(780px,calc(100% - 48px))}
+    .menu-links a{font-size:clamp(32px,6vw,72px);font-weight:500;letter-spacing:-.06em;line-height:1.15;border-bottom:1px solid var(--line);padding:8px 0 18px;transition:color .32s var(--ease-soft),padding-left .42s var(--ease-out)}
+    .menu-links a:hover{color:var(--olive);padding-left:10px}
+    .hero{padding:64px 0 0;overflow:visible;background-image:linear-gradient(90deg,rgba(9,11,8,.96) 0%,rgba(9,11,8,.9) 35%,rgba(9,11,8,.74) 68%,rgba(9,11,8,.62) 100%),linear-gradient(0deg,rgba(9,11,8,.72),rgba(9,11,8,.28)),url('assets/wardrobe.jpg');background-size:cover;background-position:center 48%;background-repeat:no-repeat}
+    .hero-top{display:flex;align-items:end;justify-content:space-between;gap:32px;margin-bottom:42px}
+    .hero-name{font-size:clamp(76px,15.3vw,204px);line-height:.8;font-weight:400;letter-spacing:-.095em;margin:0 0 0 -.07em;white-space:nowrap}
+    .hero-order{white-space:nowrap;margin:0 0 8px;color:var(--muted);font-size:13px;letter-spacing:.02em;transition:color .32s var(--ease-soft),transform .38s var(--ease-out)}
+    .hero-order:hover{color:var(--olive);transform:translateX(4px)}
+    .hero-grid{display:grid;grid-template-columns:1fr .86fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .hero-copy{padding:28px 52px 42px 0;display:flex;flex-direction:column;justify-content:space-between;min-height:480px}
+    .eyebrow{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+    .hero-description{font-size:clamp(22px,3vw,38px);line-height:1.2;letter-spacing:-.045em;max-width:690px;margin:50px 0 28px}
+    .hero-note{max-width:520px;color:var(--muted);font-size:15px;margin:0 0 30px}
+    .hero-next-step{max-width:460px;margin:14px 0 0;color:var(--muted);font-size:12px;line-height:1.5}.hero-next-step:before{content:'↗';color:var(--olive);margin-right:8px}
+    .button-row{display:flex;gap:10px;flex-wrap:wrap}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:24px;min-height:48px;padding:0 18px;background:var(--olive);color:#11160a;font-size:12px;font-weight:600;border:1px solid var(--olive);transition:background-color .32s var(--ease-soft),border-color .32s var(--ease-soft),color .32s var(--ease-soft),transform .4s var(--ease-out),box-shadow .4s var(--ease-out)}
+    .button:hover{background:#b8d582;transform:translateY(-3px);box-shadow:0 10px 24px #a5c46b20}
+    .button:active{transform:translateY(0) scale(.985);box-shadow:none}
+    .button.secondary{background:transparent;color:var(--text);border-color:var(--line)}
+    .button.secondary:hover{border-color:var(--olive);color:var(--olive)}
+    .button .arrow{font-size:18px;line-height:0}
+    .hero-photo{position:relative;min-height:480px;overflow:hidden;background:#20271a}
+    .hero-photo img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center;filter:brightness(.72)}
+    .hero-photo:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(7,9,6,.8))}
+    .photo-caption{position:absolute;z-index:1;bottom:22px;left:24px;right:24px;display:flex;justify-content:space-between;align-items:end;font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:#e7e9df}
+    .photo-caption span:last-child{color:var(--olive)}
+    .service-strip{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}
+    .service-item{position:relative;z-index:1;width:100%;min-height:102px;padding:20px 22px 20px 0;display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:12px;border:0;border-right:1px solid var(--line);background:transparent;color:inherit;text-align:left;font:inherit;cursor:pointer;appearance:none}
+    .service-item:not(:first-child){padding-left:22px}.service-item:last-child{border-right:0}
+    .service-no{font-size:11px;color:var(--olive)}
+    .service-symbol{font-size:24px;letter-spacing:-.06em;color:var(--warm);line-height:1}
+    .service-title{font-size:14px;line-height:1.2}
+    .service-kind{font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);white-space:nowrap}
+    .service-tooltip{position:absolute;top:calc(100% + 10px);left:0;z-index:40;width:min(360px,calc(100vw - 48px));padding:18px 20px;display:grid;gap:8px;background:#151a12;border:1px solid #39412e;box-shadow:0 20px 50px rgba(0,0,0,.45);color:var(--text);font-size:12px;line-height:1.6;white-space:normal;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .28s var(--ease-soft),transform .38s var(--ease-out),visibility .28s;pointer-events:none}
+    .service-tooltip-title{color:var(--olive);font-size:9px;text-transform:uppercase;letter-spacing:.14em}
+    .service-item:nth-child(2) .service-tooltip{left:50%;transform:translate(-50%,-8px)}
+    .service-item:nth-child(3) .service-tooltip{left:auto;right:0}
+    .service-item:hover .service-tooltip,.service-item:focus-visible .service-tooltip,.service-item.is-open .service-tooltip{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+    .service-item:nth-child(2):hover .service-tooltip,.service-item:nth-child(2):focus-visible .service-tooltip,.service-item:nth-child(2).is-open .service-tooltip{transform:translate(-50%,0)}
+    section{padding:112px 0}
+    .section-head{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:48px;margin-bottom:40px}
+    .section-kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 18px}
+    .section-title{font-size:clamp(38px,6.1vw,76px);line-height:.98;letter-spacing:-.065em;font-weight:450;margin:0;max-width:820px}
+    .section-aside{justify-self:end;max-width:360px;color:var(--muted);font-size:13px;margin:0}
+    .section-aside a{color:var(--olive);border-bottom:1px solid #a5c46b55;padding-bottom:3px}
+    .filter-row{display:flex;overflow:auto;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:24px;scrollbar-width:none}
+    .filter-row::-webkit-scrollbar{display:none}
+    .filter{flex:0 0 auto;min-width:102px;padding:14px 20px;border:0;border-right:1px solid var(--line);background:transparent;color:var(--muted);font-size:12px;cursor:pointer;transition:background-color .36s var(--ease-soft),color .36s var(--ease-soft),box-shadow .36s var(--ease-soft),transform .4s var(--ease-out)}
+    .filter:first-child{border-left:1px solid var(--line)}.filter:hover{color:var(--text)}.filter.active{background:var(--olive);color:#10140c}
+    .project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+    .project-card{padding:0;text-align:left;border:1px solid var(--line);background:var(--panel);cursor:pointer;overflow:hidden;transition:border-color .38s var(--ease-soft),transform .46s var(--ease-out),box-shadow .46s var(--ease-out)}
+    .project-card:hover{border-color:#718849;transform:translateY(-5px);box-shadow:0 18px 38px #0004}
+    .project-card[hidden]{display:none}
+    .project-image{position:relative;aspect-ratio:1.55;overflow:hidden;background:#171c13}
+    .project-image img{width:100%;height:100%;object-fit:cover;transition:transform .78s var(--ease-out)}
+    .project-card:hover .project-image img{transform:scale(1.045)}
+    .project-image:after{content:"";position:absolute;inset:50% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.25))}
+    .project-image .project-number{position:absolute;z-index:1;top:15px;left:16px;font-size:10px;letter-spacing:.16em;color:white;text-shadow:0 1px 12px #000}
+    .project-image .open-icon{position:absolute;z-index:1;right:14px;top:14px;width:36px;height:36px;display:grid;place-items:center;background:rgba(10,12,8,.68);border:1px solid #ffffff32;font-size:18px;transition:transform .42s var(--ease-out),background-color .32s var(--ease-soft)}
+    .project-card:hover .open-icon{transform:rotate(45deg);background:rgba(10,12,8,.86)}
+    .project-info{padding:19px 20px 22px}
+    .project-meta{display:flex;justify-content:space-between;align-items:center;color:var(--olive);font-size:9px;text-transform:uppercase;letter-spacing:.15em;margin-bottom:10px}
+    .project-name{font-size:21px;letter-spacing:-.035em;font-weight:500;margin:0 0 6px}
+    .project-desc{font-size:13px;color:var(--muted);margin:0;max-width:520px}
+    .blueprint{height:100%;width:100%;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 50%,#28331d 0,#141a11 56%,#0d110b 100%);position:relative;overflow:hidden}
+    .blueprint:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#9bb86b18 1px,transparent 1px),linear-gradient(90deg,#9bb86b18 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(135deg,transparent,#000 30%,#000 72%,transparent)}
+    .blueprint svg{width:min(72%,420px);position:relative;z-index:1;filter:drop-shadow(0 12px 20px #0008)}
+    .about{background:#0d100b;border-block:1px solid var(--line)}
+    .about-grid{display:grid;grid-template-columns:1fr .8fr;gap:80px;align-items:start}
+    .about-copy{max-width:710px}.about-copy .section-title{margin-bottom:28px}
+    .about-copy p{max-width:640px;color:#b4b7ac;margin:0 0 18px;font-size:15px}
+    .about-stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:36px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .stat{padding:19px 12px 19px 0;border-right:1px solid var(--line)}.stat:not(:first-child){padding-left:14px}.stat:last-child{border-right:0}
+    .stat strong{display:block;font-size:25px;font-weight:500;letter-spacing:-.04em;color:var(--olive)}.stat span{display:block;font-size:10px;line-height:1.3;color:var(--muted);margin-top:4px}
+    .deliverables{padding-top:45px}.deliverables-title{font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin:0 0 20px}
+    .deliverable{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--line);padding:16px 0;font-size:14px}
+    .check{width:24px;height:24px;border:1px solid #53683a;color:var(--olive);display:grid;place-items:center;font-size:12px;flex:0 0 auto}
+    .price-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line)}
+    .price-card{padding:26px 24px 24px;min-height:390px;display:flex;flex-direction:column;border-right:1px solid var(--line);background:var(--panel)}
+    .price-card:nth-child(3n){border-right:0}.price-card:nth-child(-n+3){border-bottom:1px solid var(--line)}
+    .price-card:last-child{border:0}
+    .price-card.featured{background:linear-gradient(160deg,#1c2415,#10130e 65%)}
+    .price-top{display:flex;justify-content:space-between;align-items:center;color:var(--olive);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+    .popular{padding:5px 8px;background:#26321a;color:var(--olive);font-size:8px}
+    .price-card h3{font-size:23px;line-height:1.15;letter-spacing:-.04em;font-weight:500;margin:38px 0 20px}
+    .includes{list-style:none;padding:0;margin:0 0 28px;color:#b4b7ac;font-size:12px}.includes li{padding:8px 0;border-bottom:1px solid #ffffff0c}.includes li:before{content:"+";color:var(--olive);margin-right:10px}
+    .price{font-size:14px;margin-top:auto;border-top:1px solid var(--line);padding-top:18px}.price strong{font-size:23px;font-weight:500;letter-spacing:-.04em}
+    .order-link{display:flex;justify-content:space-between;margin-top:17px;color:var(--olive);font-size:12px}
+    .reviews{background:#0d100b;border-block:1px solid var(--line)}
+    .review-box{display:grid;grid-template-columns:.85fr 1.15fr;min-height:250px;border:1px solid var(--line);background:var(--panel)}
+    .review-label{padding:32px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between}
+    .review-label strong{font-size:clamp(54px,9vw,112px);line-height:.8;font-weight:400;letter-spacing:-.08em;color:var(--olive)}
+    .review-label span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+    .review-copy{padding:36px;display:flex;flex-direction:column;justify-content:center}
+    .review-copy p{font-size:clamp(20px,3vw,32px);line-height:1.25;letter-spacing:-.04em;margin:0 0 18px;max-width:620px}
+    .review-copy a{font-size:12px;color:var(--olive);width:max-content;border-bottom:1px solid #a5c46b55;padding-bottom:4px}
+    .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .step{padding:25px 20px 27px 0;border-right:1px solid var(--line);min-height:230px}.step:not(:first-child){padding-left:20px}.step:last-child{border:0;padding-right:0}
+    .step-head{display:flex;justify-content:space-between;color:var(--olive);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+    .step h3{font-size:20px;font-weight:500;line-height:1.2;letter-spacing:-.035em;margin:35px 0 12px}.step p{font-size:12px;color:var(--muted);margin:0;max-width:240px}
+    .faq-list{border-top:1px solid var(--line)}
+    .faq-item{border-bottom:1px solid var(--line)}
+    .faq-item summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 0;cursor:pointer;font-size:15px}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item summary:after{content:"+";color:var(--olive);font-size:22px;font-weight:300;line-height:1;transition:transform .32s var(--ease-out)}
+    .faq-item[open] summary:after{content:"−";transform:rotate(180deg)}
+    .faq-answer{max-width:760px;padding:0 40px 20px 0;color:var(--muted);font-size:13px;line-height:1.65}
+    .faq-answer p{margin:0}
+    .mobile-cta{display:none}
+    .telegram-webapp .mobile-cta{display:none}
+    .contacts{padding-bottom:84px;background:linear-gradient(180deg,#090b08,#10130e)}
+    .contact-grid{display:grid;grid-template-columns:1fr .8fr;gap:72px;align-items:start}
+    .contact-copy .section-title{max-width:560px}.contact-copy>p{color:var(--muted);font-size:14px;max-width:450px;margin:22px 0 26px}
+    .contact-list{margin-top:40px;border-top:1px solid var(--line);max-width:530px}
+    .contact-link{display:grid;grid-template-columns:36px 120px 1fr auto;gap:14px;align-items:center;padding:15px 0;border-bottom:1px solid var(--line);transition:color .32s var(--ease-soft)}
+    .contact-link:hover{color:var(--olive)}
+    .contact-icon{width:34px;height:34px;display:grid;place-items:center;border:1px solid #32382a;background:#151a12;color:var(--olive);transition:background-color .32s var(--ease-soft),border-color .32s var(--ease-soft),transform .4s var(--ease-out)}
+    .contact-icon svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+    .contact-link:hover .contact-icon{border-color:var(--olive);background:#1c2415;transform:translateY(-2px)}
+    .contact-label{font-size:9px;letter-spacing:.13em;color:var(--muted)}
+    .contact-value{font-size:14px}.contact-arrow{color:var(--olive)}
+    .contact-form{background:#151912;border:1px solid #343b2d;padding:28px}
+    .form-caption{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--olive);margin:0 0 24px}
+    .field{display:grid;gap:8px;margin-bottom:18px}.field label{font-size:11px;color:var(--muted)}
+    .field input,.field textarea{width:100%;border:0;border-bottom:1px solid #454a3d;background:transparent;color:var(--text);border-radius:0;outline:none;padding:8px 0 11px;font-size:14px;resize:vertical}
+    .field input:focus,.field textarea:focus{border-color:var(--olive)}.field input::placeholder,.field textarea::placeholder{color:#666b5f}
+    .form-submit,.form-email{width:100%;justify-content:space-between;cursor:pointer;margin-top:5px}
+    .form-email{margin-top:9px}
+    .form-note{font-size:10px;color:var(--muted);line-height:1.5;margin:12px 0 0}
+    .form-status{display:none;color:var(--olive);font-size:12px;margin:14px 0 0}.form-status.show{display:block}
+    footer{border-top:1px solid var(--line);padding:23px 0 28px;color:var(--muted);font-size:10px}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}.footer-nav{display:flex;gap:18px;flex-wrap:wrap}.footer-nav a:hover{color:var(--olive)}
+    .modal{position:fixed;inset:0;background:rgba(3,5,3,.88);backdrop-filter:blur(10px);z-index:50;display:none;align-items:center;justify-content:center;padding:24px}
+    .modal.open{display:flex}.modal-panel{width:min(1050px,100%);background:var(--panel);border:1px solid #41483a;display:grid;grid-template-columns:1.2fr .8fr;position:relative}
+    .modal-panel img{width:100%;height:100%;min-height:360px;object-fit:cover}.modal-details{padding:38px;display:flex;flex-direction:column;justify-content:center}
+    .modal-details .project-meta{margin-bottom:18px}.modal-details h2{font-size:32px;line-height:1.05;letter-spacing:-.05em;font-weight:500;margin:0 0 16px}.modal-details p{font-size:13px;color:var(--muted)}
+    .modal-close{position:absolute;right:12px;top:12px;width:40px;height:40px;background:#090b08;border:1px solid #ffffff2c;font-size:22px;cursor:pointer;z-index:2}
+    .brand-mark{transition:transform .48s var(--ease-out),border-color .34s var(--ease-soft)}.brand-group:hover .brand-mark,.brand-group.social-open .brand-mark{transform:rotate(-5deg) scale(1.05);border-color:var(--olive)}
+    .service-item{transition:color .34s var(--ease-soft)}.service-item:hover,.service-item:focus-visible,.service-item.is-open{color:var(--olive);z-index:5}.service-item:focus-visible{outline:1px solid var(--olive);outline-offset:-2px}.service-item .service-title{color:var(--text);transition:color .34s var(--ease-soft)}.service-item:hover .service-title,.service-item:focus-visible .service-title,.service-item.is-open .service-title{color:var(--olive)}
+    .filter.active{box-shadow:inset 0 -3px 0 #fff3}
+    .menu-open .menu-links a{animation:menu-link-in .62s var(--ease-out) both}
+    .menu-open .menu-links a:nth-child(2){animation-delay:.07s}.menu-open .menu-links a:nth-child(3){animation-delay:.14s}.menu-open .menu-links a:nth-child(4){animation-delay:.21s}.menu-open .menu-links a:nth-child(5){animation-delay:.28s}
+    .motion-ready .scroll-reveal{opacity:0;transform:translate3d(0,22px,0) scale(.99);transition:opacity .84s var(--ease-soft),transform .84s var(--ease-out);transition-delay:var(--motion-delay,0ms)}
+    .motion-ready .scroll-reveal.is-visible{opacity:1;transform:translate3d(0,0,0) scale(1)}
+    .motion-ready .site-header{animation:header-arrive .72s var(--ease-out) both}.motion-ready .hero-name{animation:hero-arrive 1.02s .1s var(--ease-out) both}
+    @keyframes header-arrive{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes hero-arrive{from{opacity:0;transform:translateY(16px);filter:blur(3px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+    @keyframes menu-panel-in{from{opacity:0;backdrop-filter:blur(0)}to{opacity:1;backdrop-filter:blur(14px)}}
+    @keyframes menu-link-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:900px){.wrap{width:calc(100% - 48px)}.hero{padding-top:55px}.hero-name{font-size:clamp(72px,14vw,130px)}.hero-grid{grid-template-columns:1fr 1fr}.hero-copy{padding-right:28px;min-height:410px}.hero-photo{min-height:410px}.about-grid{gap:42px}.price-grid{grid-template-columns:1fr}.price-card{min-height:auto;border-right:0;border-bottom:1px solid var(--line)}.price-card h3{margin-top:24px}.price-card:last-child{border-bottom:0}.contact-grid{gap:36px}}
+    @media(max-width:640px){.wrap{width:calc(100% - 36px)}.site-header{height:64px}.menu-panel{inset:64px 0 0}.availability{display:none}.menu-btn{height:40px;padding:0 11px;font-size:10px}.brand-mark{width:36px;height:36px}.hero{padding-top:40px}.hero-top{display:block;margin-bottom:28px}.hero-name{font-size:clamp(69px,17.8vw,112px);letter-spacing:-.09em}.hero-order{display:inline-block;margin:17px 0 0;font-size:12px}.hero-grid{grid-template-columns:1fr}.hero-copy{min-height:0;padding:17px 0 24px}.hero-description{font-size:27px;margin:33px 0 16px}.hero-note{font-size:13px;margin-bottom:20px}.button{min-height:45px;padding:0 14px;gap:16px}.hero-photo{min-height:250px;aspect-ratio:1.45}.photo-caption{left:16px;right:16px;bottom:15px;font-size:9px}.service-strip{grid-template-columns:1fr}.service-item,.service-item:not(:first-child){min-height:72px;padding:13px 0;grid-template-columns:35px 30px 1fr auto;border-right:0;border-bottom:1px solid var(--line)}.service-item:last-child{border-bottom:0}.service-title{font-size:13px}.service-symbol{font-size:22px}section{padding:76px 0}.section-head{grid-template-columns:1fr;gap:16px;margin-bottom:28px}.section-kicker{margin-bottom:14px}.section-title{font-size:clamp(38px,11vw,58px)}.section-aside{justify-self:start;font-size:12px}.filter-row{margin-inline:-18px;padding-left:18px;margin-bottom:16px}.filter{min-width:82px;padding:13px 15px}.project-grid{grid-template-columns:1fr;gap:14px}.project-image{aspect-ratio:1.45}.project-info{padding:16px}.project-name{font-size:19px}.project-desc{font-size:12px}.about-grid{grid-template-columns:1fr;gap:14px}.about-copy p{font-size:13px}.about-stats{margin-top:28px}.stat strong{font-size:21px}.stat span{font-size:9px}.deliverables{padding-top:12px}.deliverable{font-size:12px}.price-card{padding:22px 18px}.review-box{grid-template-columns:1fr}.review-label{min-height:130px;border-right:0;border-bottom:1px solid var(--line);padding:20px;flex-direction:row;align-items:end}.review-label strong{font-size:64px}.review-copy{padding:24px 20px}.review-copy p{font-size:23px}.steps{grid-template-columns:1fr 1fr}.step{min-height:205px;padding:18px 14px 20px 0}.step:not(:first-child){padding-left:14px}.step:nth-child(2){border-right:0}.step:nth-child(-n+2){border-bottom:1px solid var(--line)}.step h3{font-size:18px;margin-top:27px}.step p{font-size:11px}.contact-grid{grid-template-columns:1fr;gap:32px}.contact-list{margin-top:30px}.contact-link{grid-template-columns:34px 82px minmax(0,1fr) auto;gap:8px}.contact-label{font-size:8px}.contact-value{font-size:12px}.contact-form{padding:22px 18px}.footer-inner{align-items:flex-start;flex-direction:column}.footer-nav{gap:12px 16px}.modal{padding:14px}.modal-panel{grid-template-columns:1fr;max-height:92vh;overflow:auto}.modal-panel img{height:240px;min-height:0}.modal-details{padding:22px}.modal-details h2{font-size:26px}.menu-links a{font-size:38px;padding-bottom:14px}}
+    @media(max-width:640px){body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}.telegram-webapp{padding-bottom:env(safe-area-inset-bottom)}.faq-item summary{padding:17px 0;font-size:13px}.faq-answer{padding:0 28px 18px 0;font-size:12px}.mobile-cta{position:fixed;left:18px;right:18px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:25;display:flex;justify-content:space-between;align-items:center;min-height:52px;padding:0 18px;background:var(--olive);border:1px solid var(--olive);color:#10140c;font-size:13px;font-weight:600;box-shadow:0 12px 32px rgba(0,0,0,.42);transition:opacity .3s var(--ease-soft),visibility .3s,transform .38s var(--ease-out)}.mobile-cta:active{transform:scale(.98)}.mobile-cta.is-hidden{opacity:0;visibility:hidden;transform:translateY(12px);pointer-events:none}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}.motion-ready .scroll-reveal,.motion-ready .scroll-reveal.is-visible{opacity:1;transform:none;transition:none}.motion-ready .site-header,.motion-ready .hero-name,.menu-open .menu-links a{animation:none!important}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div class="brand-group" id="brandGroup">
+        <button class="brand-mark social-trigger" id="socialToggle" type="button" aria-label="Открыть ссылки на соцсети и контакты" aria-expanded="false" aria-controls="brandSocialLinks">МБ</button>
+        <a class="brand" href="#top" aria-label="medoyvmb — наверх">medoyvmb</a>
+        <div class="brand-social-panel" id="brandSocialLinks" aria-label="Соцсети и контакты">
+          <a class="brand-social-link" href="https://kwork.ru/user/medoyv" target="_blank" rel="noreferrer" aria-label="Профиль на Kwork"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="1"/><path d="M8 7v10m0-5 8-5m-8 5 8 5"/></svg></a>
+          <a class="brand-social-link" href="https://t.me/medoyv" target="_blank" rel="noreferrer" aria-label="Telegram @medoyv"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 3-7.4 18-3.7-7.9L2 9.7 21 3Z"/><path d="m9.9 13.1 5-4.4"/></svg></a>
+          <a class="brand-social-link" href="mailto:medoyv@vk.com" aria-label="Почта medoyv@vk.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m4 7 8 6 8-6"/></svg></a>
+        </div>
+      </div>
+      <div class="header-actions"><span class="availability">Принимаю заказы</span><button class="menu-btn" id="menuToggle" aria-expanded="false" aria-controls="mainMenu"><span>Меню</span><span class="burger" aria-hidden="true"><i></i><i></i></span></button></div>
+    </div>
+  </header>
+  <nav class="menu-panel" id="mainMenu" aria-label="Основная навигация">
+    <div class="menu-links">
+      <a href="#works">Мои работы <span>↗</span></a><a href="#about">Обо мне <span>↗</span></a><a href="#prices">Услуги и цены <span>↗</span></a><a href="#faq">Частые вопросы <span>↗</span></a><a href="#process">Как я работаю <span>↗</span></a><a href="#contacts">Контакты <span>↗</span></a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="wrap" id="top">
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="hero-top"><h1 class="hero-name" id="heroTitle">medoyvmb</h1><a class="hero-order" href="#contacts">Принимаю заказы <span class="arrow">→</span><span style="color:var(--olive);margin-left:10px">●</span></a></div>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">Чем помогаю</div>
+            <div><p class="hero-description">Проектирую мебель в Базис Мебельщик — от эскиза до файлов для производства.</p><p class="hero-note">Нестандартные размеры, ниши и скосы. Проектирую так, чтобы мебель точно встала в помещение, а файлы были понятны производству.</p><div class="button-row"><a class="button" href="#contacts">Обсудить проект <span class="arrow">↗</span></a><a class="button secondary" href="#works">Смотреть работы <span class="arrow">↓</span></a></div><p class="hero-next-step">Для расчёта: размеры, фото помещения или эскиз. Отвечу в течение 15 минут.</p></div>
+          </div>
+          <a class="hero-photo" href="#works" aria-label="Смотреть портфолио: встроенный шкаф с зелёными фасадами"><img src="assets/wardrobe.jpg" alt="Встроенный шкаф с зелёными фасадами и тёплыми деревянными нишами"><span class="photo-caption"><span>Мои работы</span><span>Шкаф в нишу ↗</span></span></a>
+        </div>
+        <div class="service-strip" aria-label="Направления работы">
+          <button class="service-item" type="button" aria-describedby="service-tip-design" aria-expanded="false"><span class="service-no">01</span><span class="service-symbol">Пр</span><span class="service-title">Проектирование</span><span class="service-kind">Услуга</span><span class="service-tooltip" id="service-tip-design" role="tooltip"><span class="service-tooltip-title">Что входит в проектирование</span><span>Создаю 3D-модель по вашим размерам, учитываю ниши, скосы и особенности помещения. Подготавливаю чертежи и файлы для производства; внешний вид и конструкцию согласуем до передачи в цех.</span></span></button>
+          <button class="service-item" type="button" aria-describedby="service-tip-furniture" aria-expanded="false"><span class="service-no">02</span><span class="service-symbol">Нм</span><span class="service-title">Мебель на заказ</span><span class="service-kind">Услуга</span><span class="service-tooltip" id="service-tip-furniture" role="tooltip"><span class="service-tooltip-title">Что можно спроектировать</span><span>Кухню, шкаф, гардеробную, прихожую или встроенную мебель в нишу и под скос. Подберём наполнение под помещение. Для начала пришлите размеры, фото или эскиз — помогу уточнить задачу.</span></span></button>
+          <button class="service-item" type="button" aria-describedby="service-tip-basis" aria-expanded="false"><span class="service-no">03</span><span class="service-symbol">Бм</span><span class="service-title">Базис Мебельщик</span><span class="service-kind">Программа</span><span class="service-tooltip" id="service-tip-basis" role="tooltip"><span class="service-tooltip-title">Инструмент для проекта</span><span>Работаю в программе «Базис Мебельщик»: собираю 3D-модель мебели и готовлю материалы для цеха — чертежи, спецификации и карты раскроя. Это помогает заранее проверить конструкцию и точно передать её в производство.</span></span></button>
+        </div>
+      </section>
+    </div>
+
+    <section id="works">
+      <div class="wrap">
+        <div class="section-head"><div><p class="section-kicker">01&nbsp; / &nbsp;Мои работы</p><h2 class="section-title">Проекты и готовая мебель</h2></div><p class="section-aside"><a href="https://kwork.ru/user/medoyv" target="_blank" rel="noreferrer">Все работы на Kwork ↗</a></p></div>
+        <div class="filter-row" role="group" aria-label="Фильтр проектов">
+          <button class="filter active" data-filter="all">Все</button><button class="filter" data-filter="wardrobes">Шкафы</button><button class="filter" data-filter="kitchens">Кухни</button><button class="filter" data-filter="niches">Ниши</button><button class="filter" data-filter="projects">Проекты</button>
+        </div>
+        <div class="project-grid">
+          <button class="project-card" data-category="wardrobes" data-title="Встроенный шкаф в нишу" data-type="Шкафы" data-desc="Шкаф от пола до потолка с зелёными фасадами. Проект, чертежи и карта раскроя." data-image="assets/wardrobe.jpg" aria-label="Подробнее: Встроенный шкаф в нишу">
+            <span class="project-image"><img src="assets/wardrobe.jpg" alt="Встроенный шкаф в нишу с зелёными фасадами" loading="lazy"><span class="project-number">01</span><span class="open-icon">↗</span></span><span class="project-info"><span class="project-meta"><span>Шкафы</span><span>01</span></span><span class="project-name">Встроенный шкаф в нишу</span><span class="project-desc">Шкаф от пола до потолка с зелёными фасадами. Проект, чертежи и карта раскроя.</span></span>
+          </button>
+          <button class="project-card" data-category="kitchens" data-title="Кухня с оливковыми фасадами" data-type="Кухни" data-desc="Прямая кухня под размер помещения. 3D-модель и файлы для производства." data-image="assets/kitchen.jpg" aria-label="Подробнее: Кухня с оливковыми фасадами">
+            <span class="project-image"><img src="assets/kitchen.jpg" alt="Прямая кухня с оливковыми фасадами и деревянными полками" loading="lazy"><span class="project-number">02</span><span class="open-icon">↗</span></span><span class="project-info"><span class="project-meta"><span>Кухни</span><span>02</span></span><span class="project-name">Кухня с оливковыми фасадами</span><span class="project-desc">Прямая кухня под размер помещения. 3D-модель и файлы для производства.</span></span>
+          </button>
+          <button class="project-card" data-category="niches" data-title="Мебель под скат крыши" data-type="Ниши" data-desc="Стеллаж и комод в мансардную нишу со скошенным потолком." data-image="assets/attic.jpg" aria-label="Подробнее: Мебель под скат крыши">
+            <span class="project-image"><img src="assets/attic.jpg" alt="Комод и шкаф, встроенные под скат крыши" loading="lazy"><span class="project-number">03</span><span class="open-icon">↗</span></span><span class="project-info"><span class="project-meta"><span>Ниши</span><span>03</span></span><span class="project-name">Мебель под скат крыши</span><span class="project-desc">Стеллаж и комод в мансардную нишу со скошенным потолком.</span></span>
+          </button>
+          <button class="project-card" data-category="projects" data-title="Модель корпуса для производства" data-type="Проекты" data-desc="Детализированная модель шкафа с присадкой и кромкой для цеха." data-image="blueprint" aria-label="Подробнее: Модель корпуса для производства">
+            <span class="project-image"><span class="blueprint"><svg viewBox="0 0 480 280" fill="none" aria-hidden="true"><path d="M96 58h190v188H96zM286 88h96v158h-96zM126 58v188M191 58v188M96 122h190M96 184h190M286 136h96M286 190h96" stroke="#b3ce80" stroke-width="2"/><path d="M80 42h222v220H80zM270 72h128v190H270z" stroke="#b3ce80" stroke-width=".7" stroke-dasharray="5 6"/><path d="M96 34h190M96 27v14M286 27v14M62 58v188M55 58h14M55 246h14" stroke="#d5dfc0" stroke-width="1"/><text x="171" y="24" fill="#d5dfc0" font-size="10" text-anchor="middle" font-family="Arial">1900</text><text x="43" y="155" fill="#d5dfc0" font-size="10" text-anchor="middle" font-family="Arial" transform="rotate(-90 43 155)">2400</text><circle cx="253" cy="113" r="3" fill="#dba86a"/><circle cx="253" cy="176" r="3" fill="#dba86a"/><circle cx="349" cy="127" r="3" fill="#dba86a"/><circle cx="349" cy="205" r="3" fill="#dba86a"/></svg></span><span class="project-number">04</span><span class="open-icon">↗</span></span><span class="project-info"><span class="project-meta"><span>Проекты</span><span>04</span></span><span class="project-name">Модель корпуса для производства</span><span class="project-desc">Детализированная модель шкафа с присадкой и кромкой для цеха.</span></span>
+          </button>
+          <button class="project-card" data-category="wardrobes" data-title="Встроенный шкаф с ореховой секцией" data-type="Шкафы" data-desc="Визуализация системы хранения с открытой подсвеченной нишей и скрытыми фасадами." data-image="assets/wardrobe-walnut.jpg" aria-label="Подробнее: Встроенный шкаф с ореховой секцией">
+            <span class="project-image"><img src="assets/wardrobe-walnut.jpg" alt="Встроенный оливковый шкаф с открытой секцией из ореха" loading="lazy"><span class="project-number">05</span><span class="open-icon">↗</span></span><span class="project-info"><span class="project-meta"><span>Шкафы</span><span>05</span></span><span class="project-name">Встроенный шкаф с ореховой секцией</span><span class="project-desc">Визуализация системы хранения с открытой подсвеченной нишей и скрытыми фасадами.</span></span>
+          </button>
+          <button class="project-card" data-category="wardrobes" data-title="Прихожая с местом для посадки" data-type="Шкафы" data-desc="Концепция прихожей со встроенной скамьёй, ящиками и фасадами в оттенке шалфея." data-image="assets/wardrobe-entry.jpg" aria-label="Подробнее: Прихожая с местом для посадки">
+            <span class="project-image"><img src="assets/wardrobe-entry.jpg" alt="Встроенная прихожая с оливковыми фасадами и дубовой скамьёй" loading="lazy"><span class="project-number">06</span><span class="open-icon">↗</span></span><span class="project-info"><span class="project-meta"><span>Шкафы</span><span>06</span></span><span class="project-name">Прихожая с местом для посадки</span><span class="project-desc">Концепция прихожей со встроенной скамьёй, ящиками и фасадами в оттенке шалфея.</span></span>
+          </button>
+          <button class="project-card" data-category="kitchens" data-title="Угловая кухня с открытой полкой" data-type="Кухни" data-desc="3D-визуализация Г-образной кухни с оливковыми фасадами и шпонированной полкой." data-image="assets/kitchen-corner.jpg" aria-label="Подробнее: Угловая кухня с открытой полкой">
+            <span class="project-image"><img src="assets/kitchen-corner.jpg" alt="Г-образная кухня с оливковыми фасадами и деревянной полкой" loading="lazy"><span class="project-number">07</span><span class="open-icon">↗</span></span><span class="project-info"><span class="project-meta"><span>Кухни</span><span>07</span></span><span class="project-name">Угловая кухня с открытой полкой</span><span class="project-desc">3D-визуализация Г-образной кухни с оливковыми фасадами и шпонированной полкой.</span></span>
+          </button>
+          <button class="project-card" data-category="kitchens" data-title="Компактная кухня с полуостровом" data-type="Кухни" data-desc="Визуализация компактной кухни с комбинированными фасадами и небольшой зоной завтрака." data-image="assets/kitchen-compact.jpg" aria-label="Подробнее: Компактная кухня с полуостровом">
+            <span class="project-image"><img src="assets/kitchen-compact.jpg" alt="Светлая компактная кухня с оливковыми фасадами и полуостровом" loading="lazy"><span class="project-number">08</span><span class="open-icon">↗</span></span><span class="project-info"><span class="project-meta"><span>Кухни</span><span>08</span></span><span class="project-name">Компактная кухня с полуостровом</span><span class="project-desc">Визуализация компактной кухни с комбинированными фасадами и небольшой зоной завтрака.</span></span>
+          </button>
+          <button class="project-card" data-category="niches" data-title="Рабочее место под лестницей" data-type="Ниши" data-desc="Визуализация встроенного стола, тумб и открытых полок под линию лестничного марша." data-image="assets/niche-office.jpg" aria-label="Подробнее: Рабочее место под лестницей">
+            <span class="project-image"><img src="assets/niche-office.jpg" alt="Встроенный рабочий стол и полки под лестницей" loading="lazy"><span class="project-number">09</span><span class="open-icon">↗</span></span><span class="project-info"><span class="project-meta"><span>Ниши</span><span>09</span></span><span class="project-name">Рабочее место под лестницей</span><span class="project-desc">Визуализация встроенного стола, тумб и открытых полок под линию лестничного марша.</span></span>
+          </button>
+          <button class="project-card" data-category="niches" data-title="Мебельная ниша у окна" data-type="Ниши" data-desc="Визуализация тумбы-лавки и боковых стеллажей, собранных в единую систему хранения." data-image="assets/niche-window.jpg" aria-label="Подробнее: Мебельная ниша у окна">
+            <span class="project-image"><img src="assets/niche-window.jpg" alt="Встроенная мебельная ниша с тумбой-лавкой и стеллажами у окна" loading="lazy"><span class="project-number">10</span><span class="open-icon">↗</span></span><span class="project-info"><span class="project-meta"><span>Ниши</span><span>10</span></span><span class="project-name">Мебельная ниша у окна</span><span class="project-desc">Визуализация тумбы-лавки и боковых стеллажей, собранных в единую систему хранения.</span></span>
+          </button>
+          <button class="project-card" data-category="projects" data-title="3D-модель углового шкафа" data-type="Проекты" data-desc="Визуализация внутреннего наполнения до выпуска чертежей и списка деталей." data-image="assets/project-model.png" aria-label="Подробнее: 3D-модель углового шкафа">
+            <span class="project-image"><img src="assets/project-model.png" alt="Трёхмерная модель шкафа с открытой дверью и внутренними секциями" loading="lazy"><span class="project-number">11</span><span class="open-icon">↗</span></span><span class="project-info"><span class="project-meta"><span>Проекты</span><span>11</span></span><span class="project-name">3D-модель углового шкафа</span><span class="project-desc">Визуализация внутреннего наполнения до выпуска чертежей и списка деталей.</span></span>
+          </button>
+          <button class="project-card" data-category="projects" data-title="Сборка корпуса по деталям" data-type="Проекты" data-desc="Разнесённая 3D-модель показывает панели, ящики, петли и принцип сборки." data-image="assets/project-exploded.png" aria-label="Подробнее: Сборка корпуса по деталям">
+            <span class="project-image"><img src="assets/project-exploded.png" alt="Разнесённая трёхмерная модель мебельного корпуса с ящиками и фасадами" loading="lazy"><span class="project-number">12</span><span class="open-icon">↗</span></span><span class="project-info"><span class="project-meta"><span>Проекты</span><span>12</span></span><span class="project-name">Сборка корпуса по деталям</span><span class="project-desc">Разнесённая 3D-модель показывает панели, ящики, петли и принцип сборки.</span></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="wrap about-grid">
+        <div class="about-copy"><p class="section-kicker">02&nbsp; / &nbsp;Обо мне</p><h2 class="section-title">Проектирую мебель, которую можно сразу пускать в цех</h2><p>Меня зовут medoyvmb. Я занимаюсь проектированием корпусной мебели в Базис Мебельщик и делаю нестандартную мебель под размер: встроенные шкафы, кухни, мебель в ниши и под скосы.</p><p>Работаю с частными заказчиками и мебельными мастерскими. Моя задача — чтобы проект был понятен клиенту, а файлы — производству без лишних вопросов.</p>
+          <div class="about-stats"><div class="stat"><strong>Базис</strong><span>Мебельщик, раскрой, смета</span></div><div class="stat"><strong>3D</strong><span>Модель каждого изделия</span></div><div class="stat"><strong>1 мм</strong><span>Точность чертежей</span></div></div>
+        </div>
+        <div class="deliverables"><p class="deliverables-title">Что входит в проект</p><div class="deliverable"><span class="check">↗</span><span>3D-модели корпусной мебели</span></div><div class="deliverable"><span class="check">↗</span><span>Чертежи с размерами и узлами</span></div><div class="deliverable"><span class="check">↗</span><span>Карты раскроя листовых материалов</span></div><div class="deliverable"><span class="check">↗</span><span>Спецификации деталей и фурнитуры</span></div></div>
+      </div>
+    </section>
+
+    <section id="prices">
+      <div class="wrap"><div class="section-head"><div><p class="section-kicker">03&nbsp; / &nbsp;Услуги и цены</p><h2 class="section-title">Что я делаю и сколько это стоит</h2></div><p class="section-aside">Стоимость зависит от размеров и сложности изделия. Точную смету подготовлю после обсуждения задачи.</p></div>
+        <div class="price-grid">
+          <article class="price-card"><div class="price-top"><span>01&nbsp; / &nbsp;Пр</span></div><h3>Проект корпусной мебели</h3><ul class="includes"><li>3D-модель в Базис Мебельщик</li><li>Чертежи с размерами</li><li>Визуализация для согласования</li></ul><div class="price"><strong>от 1 500 ₽</strong> за изделие</div><a class="order-link" href="#contacts">Заказать <span>↗</span></a></article>
+          <article class="price-card featured"><div class="price-top"><span>02&nbsp; / &nbsp;Рк</span><span class="popular">Чаще всего заказывают</span></div><h3>Файлы для производства</h3><ul class="includes"><li>Карта раскроя</li><li>Спецификация деталей</li><li>Кромка и присадка</li></ul><div class="price"><strong>от 1 000 ₽</strong> за изделие</div><a class="order-link" href="#contacts">Заказать <span>↗</span></a></article>
+          <article class="price-card"><div class="price-top"><span>03&nbsp; / &nbsp;Нм</span></div><h3>Нестандартная мебель под размер</h3><ul class="includes"><li>Встроенные шкафы</li><li>Мебель в ниши и под скосы</li><li>Изготовление под ключ</li></ul><div class="price"><strong>По запросу</strong> после замера</div><a class="order-link" href="#contacts">Обсудить проект <span>↗</span></a></article>
+          <article class="price-card"><div class="price-top"><span>04&nbsp; / &nbsp;Кх</span></div><h3>Проект кухни</h3><ul class="includes"><li>Планировка и 3D-модель</li><li>Подбор модулей под помещение</li><li>Чертежи и визуализация</li></ul><div class="price"><strong>от 5 000 ₽</strong> за проект</div><a class="order-link" href="#contacts">Обсудить кухню <span>↗</span></a></article>
+          <article class="price-card"><div class="price-top"><span>05&nbsp; / &nbsp;Гр</span></div><h3>Проект гардеробной</h3><ul class="includes"><li>Подбор системы хранения</li><li>Учёт размеров и планировки</li><li>Чертежи для производства</li></ul><div class="price"><strong>По согласованию</strong></div><a class="order-link" href="#contacts">Обсудить гардеробную <span>↗</span></a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews" id="reviews">
+      <div class="wrap"><div class="section-head"><div><p class="section-kicker">04&nbsp; / &nbsp;Отзывы клиентов</p><h2 class="section-title">Репутация складывается из точных проектов</h2></div><p class="section-aside"><a href="https://kwork.ru/user/medoyv" target="_blank" rel="noreferrer">Отзывы на Kwork ↗</a></p></div>
+        <div class="review-box"><div class="review-label"><strong>↗</strong><span>Профиль medoyv на Kwork</span></div><div class="review-copy"><p>Актуальные отзывы и рейтинг — в профиле на Kwork. Откройте его, чтобы увидеть новые отзывы по мере их появления.</p><a href="https://kwork.ru/user/medoyv" target="_blank" rel="noreferrer">Смотреть отзывы на Kwork ↗</a></div></div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="wrap"><div class="section-head"><div><p class="section-kicker">05&nbsp; / &nbsp;Как я работаю</p><h2 class="section-title">Четыре шага от замера до цеха</h2></div><p class="section-aside">Вы понимаете, что происходит на каждом этапе — и когда будут готовы файлы для производства.</p></div>
+        <div class="steps">
+          <article class="step"><div class="step-head"><span>01</span><span>1 день</span></div><h3>Замер и обсуждение</h3><p>Уточняю размеры, материалы, фурнитуру и бюджет. Можно прислать эскиз или фото помещения.</p></article>
+          <article class="step"><div class="step-head"><span>02</span><span>1–3 дня</span></div><h3>Проектирование</h3><p>Строю 3D-модель в Базис Мебельщик с учётом ниш, скосов и коммуникаций.</p></article>
+          <article class="step"><div class="step-head"><span>03</span><span>По ходу</span></div><h3>Согласование</h3><p>Показываю модель и чертежи, вношу правки до полного утверждения.</p></article>
+          <article class="step"><div class="step-head"><span>04</span><span>После утверждения</span></div><h3>Файлы на производство</h3><p>Передаю карты раскроя, спецификации и чертежи — готово для цеха.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contacts" id="contacts">
+    <section class="faq" id="faq">
+      <div class="wrap"><div class="section-head"><div><p class="section-kicker">06&nbsp; / &nbsp;Частые вопросы</p><h2 class="section-title">Перед началом проекта</h2></div><p class="section-aside">Коротко о том, что обычно важно знать до расчёта и проектирования.</p></div>
+        <div class="faq-list">
+          <details class="faq-item"><summary>Что нужно прислать для оценки проекта?</summary><div class="faq-answer"><p>Напишите, какую мебель хотите, и пришлите примерные размеры помещения. Фото, план или эскиз помогут точнее понять задачу. Если точных замеров пока нет — начнём с того, что есть.</p></div></details>
+          <details class="faq-item"><summary>Можно заказать не только шкаф или кухню?</summary><div class="faq-answer"><p>Да. Проектирую кухни, шкафы, гардеробные, прихожие и встроенную мебель для ниш, мансард и помещений со скосами. Наполнение и конструкцию подбираем под размеры и ваши пожелания.</p></div></details>
+          <details class="faq-item"><summary>Что входит в готовый проект?</summary><div class="faq-answer"><p>Состав зависит от задачи: это может быть 3D-модель, чертежи с размерами, спецификация деталей и фурнитуры, карта раскроя и файлы для производства. Точный комплект согласуем до начала работы.</p></div></details>
+          <details class="faq-item"><summary>Как рассчитывается стоимость?</summary><div class="faq-answer"><p>Цена зависит от типа мебели, размеров, сложности конструкции и состава файлов. На странице есть базовые цены; точную стоимость назову после того, как посмотрю описание, размеры, фото или эскиз.</p></div></details>
+          <details class="faq-item"><summary>Сколько времени занимает проектирование?</summary><div class="faq-answer"><p>Срок зависит от сложности изделия и количества согласований. Перед началом обозначу срок, а если по ходу появятся изменения — заранее обсудим, как они на него повлияют.</p></div></details>
+        </div>
+      </div>
+    </section>
+      <div class="wrap"><div class="contact-grid">
+        <div class="contact-copy"><p class="section-kicker">07&nbsp; / &nbsp;Контакты</p><h2 class="section-title">Обсудим ваш проект</h2><p>Пришлите размеры, эскиз или фото помещения — отвечу, сколько будет стоить проект и в какие сроки.</p><a class="button" href="https://kwork.ru/user/medoyv" target="_blank" rel="noreferrer">Написать на Kwork <span class="arrow">↗</span></a>
+          <div class="contact-list">
+            <a class="contact-link" href="https://kwork.ru/user/medoyv" target="_blank" rel="noreferrer" aria-label="Профиль medoyv на Kwork">
+              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="1"/><path d="M8 7v10m0-5 8-5m-8 5 8 5"/></svg></span><span class="contact-label">KWORK</span><span class="contact-value">Профиль medoyv</span><span class="contact-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="contact-link" href="https://t.me/medoyv" target="_blank" rel="noreferrer" aria-label="Написать в Telegram @medoyv">
+              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m21 3-7.4 18-3.7-7.9L2 9.7 21 3Z"/><path d="m9.9 13.1 5-4.4"/></svg></span><span class="contact-label">TELEGRAM</span><span class="contact-value">@medoyv</span><span class="contact-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="contact-link" href="mailto:medoyv@vk.com" aria-label="Написать на почту medoyv@vk.com">
+              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m4 7 8 6 8-6"/></svg></span><span class="contact-label">ПОЧТА</span><span class="contact-value">medoyv@vk.com</span><span class="contact-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm"><p class="form-caption">Заявка на проект</p><div class="field"><label for="name">Имя</label><input id="name" name="name" placeholder="Как к вам обращаться?" required></div><div class="field"><label for="reply">Контакт для связи</label><input id="reply" name="reply" placeholder="Телефон, Telegram или почта" required></div><div class="field"><label for="task">Задача</label><textarea id="task" name="task" rows="3" placeholder="Что нужно спроектировать?" required></textarea></div><button class="button form-submit" type="submit">Перейти в бота с заявкой <span class="arrow">↗</span></button><button class="button secondary form-email" id="emailSubmit" type="button">Подготовить письмо <span class="arrow">↗</span></button><p class="form-note">Откроется бот @medoyv_mebels_bot с черновиком заявки. В Telegram нажмите «Отправить», затем сможете приложить эскизы и фото.</p><p class="form-status" id="formStatus" role="status"></p></form>
+      </div></div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-inner"><span>medoyvmb © <span id="year"></span> &nbsp;— проектирование мебели в Базис Мебельщик</span><nav class="footer-nav" aria-label="Ссылки в подвале"><a href="#works">Мои работы</a><a href="#about">Обо мне</a><a href="#prices">Услуги и цены</a><a href="#reviews">Отзывы</a><a href="#process">Как я работаю</a><a href="#faq">Вопросы</a><a href="#contacts">Контакты</a></nav></div></footer>
+  <a class="mobile-cta" href="#contacts" aria-label="Перейти к форме заявки"><span>Обсудить проект</span><span aria-hidden="true">↗</span></a>
+
+  <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-panel"><button class="modal-close" id="modalClose" aria-label="Закрыть">×</button><img id="modalImage" src="" alt=""><div class="modal-details"><div class="project-meta"><span id="modalType"></span><span id="modalNumber"></span></div><h2 id="modalTitle"></h2><p id="modalDesc"></p><a class="button" href="#contacts" id="modalContact">Обсудить похожий проект <span class="arrow">↗</span></a></div></div></div>
+  <script>
+    const telegramApp=window.Telegram?.WebApp;
+    if(telegramApp){telegramApp.ready?.();telegramApp.expand?.();document.body.classList.add('telegram-webapp')}
+    const body=document.body,menuToggle=document.getElementById('menuToggle'),mainMenu=document.getElementById('mainMenu');
+    const brandGroup=document.getElementById('brandGroup'),socialToggle=document.getElementById('socialToggle');
+    function setSocialsOpen(open){brandGroup.classList.toggle('social-open',open);socialToggle.setAttribute('aria-expanded',String(open))}
+    socialToggle.addEventListener('click',()=>setSocialsOpen(!brandGroup.classList.contains('social-open')));
+    brandGroup.addEventListener('pointerenter',()=>socialToggle.setAttribute('aria-expanded','true'));
+    brandGroup.addEventListener('pointerleave',()=>socialToggle.setAttribute('aria-expanded',String(brandGroup.classList.contains('social-open'))));
+    brandGroup.addEventListener('focusin',()=>socialToggle.setAttribute('aria-expanded','true'));
+    brandGroup.addEventListener('focusout',event=>{if(!brandGroup.contains(event.relatedTarget))socialToggle.setAttribute('aria-expanded',String(brandGroup.classList.contains('social-open')))});
+    brandGroup.querySelectorAll('.brand-social-link').forEach(link=>link.addEventListener('click',()=>setSocialsOpen(false)));
+    document.addEventListener('click',event=>{if(!brandGroup.contains(event.target))setSocialsOpen(false)});
+    function closeMenu(){body.classList.remove('menu-open');menuToggle.setAttribute('aria-expanded','false')}
+    menuToggle.addEventListener('click',()=>{const open=body.classList.toggle('menu-open');menuToggle.setAttribute('aria-expanded',String(open))});
+    mainMenu.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'){closeMenu();closeModal();setSocialsOpen(false);closeServiceTips()}});
+    document.getElementById('year').textContent=new Date().getFullYear();
+    const mobileCta=document.querySelector('.mobile-cta');
+    if('IntersectionObserver' in window){const contactCtaObserver=new IntersectionObserver(entries=>entries.forEach(entry=>mobileCta.classList.toggle('is-hidden',entry.isIntersecting)),{threshold:.12});contactCtaObserver.observe(document.getElementById('contacts'))}
+    const serviceItems=[...document.querySelectorAll('.service-item')];
+    function closeServiceTips(){serviceItems.forEach(item=>{item.classList.remove('is-open');item.setAttribute('aria-expanded','false')})}
+    serviceItems.forEach(item=>item.addEventListener('click',event=>{event.stopPropagation();const shouldOpen=!item.classList.contains('is-open');closeServiceTips();if(shouldOpen){item.classList.add('is-open');item.setAttribute('aria-expanded','true')}}));
+    document.addEventListener('click',event=>{if(!event.target.closest('.service-item'))closeServiceTips()});
+    const filters=[...document.querySelectorAll('.filter')],cards=[...document.querySelectorAll('.project-card')];
+    filters.forEach(filter=>filter.addEventListener('click',()=>{filters.forEach(item=>item.classList.toggle('active',item===filter));const value=filter.dataset.filter;cards.forEach(card=>card.hidden=value!=='all'&&card.dataset.category!==value)}));
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){const revealTargets=[...document.querySelectorAll('.hero-copy,.hero-photo,.service-item,.section-head,.filter-row,.project-card,.about-grid>*,.price-card,.review-box,.step,.contact-grid>*,footer .footer-inner')];revealTargets.forEach((element,index)=>{element.classList.add('scroll-reveal');element.style.setProperty('--motion-delay',`${(index%4)*55}ms`)});body.classList.add('motion-ready');const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target)}}),{threshold:.14,rootMargin:'0px 0px -36px 0px'});revealTargets.forEach(element=>revealObserver.observe(element))}
+    const modal=document.getElementById('projectModal'),modalImage=document.getElementById('modalImage');
+    function closeModal(){modal.classList.remove('open');body.style.overflow=''}
+    cards.forEach(card=>card.addEventListener('click',()=>{const data=card.dataset;document.getElementById('modalTitle').textContent=data.title;document.getElementById('modalType').textContent=data.type;document.getElementById('modalNumber').textContent=String(cards.indexOf(card)+1).padStart(2,'0');document.getElementById('modalDesc').textContent=data.desc;if(data.image==='blueprint'){modalImage.src='';modalImage.alt='';modalImage.style.display='none'}else{modalImage.src=data.image;modalImage.alt=data.title;modalImage.style.display='block'}modal.classList.add('open');body.style.overflow='hidden'}));
+    document.getElementById('modalClose').addEventListener('click',closeModal);modal.addEventListener('click',event=>{if(event.target===modal)closeModal()});document.getElementById('modalContact').addEventListener('click',()=>{const task=document.getElementById('task'),title=document.getElementById('modalTitle').textContent,description=document.getElementById('modalDesc').textContent;task.value='Здравствуйте! Хочу обсудить похожий проект: '+title+'.\nПожелание: '+description;closeModal()});
+    const contactForm=document.getElementById('contactForm'),formStatus=document.getElementById('formStatus');
+    function getLeadDraft(){const form=new FormData(contactForm);return 'Заявка с портфолио medoyvmb\nИмя: '+form.get('name')+'\nКонтакт: '+form.get('reply')+'\n\nЗадача:\n'+form.get('task')}
+    contactForm.addEventListener('submit',event=>{event.preventDefault();const draft=getLeadDraft(),url='https://t.me/medoyv_mebels_bot?start=portfolio&text='+encodeURIComponent(draft);formStatus.textContent='Откроется @medoyv_mebels_bot. Если черновик не появится, бот поможет заполнить заявку по шагам.';formStatus.classList.add('show');if(telegramApp?.openTelegramLink){telegramApp.openTelegramLink(url)}else{window.location.href=url}});
+    document.getElementById('emailSubmit').addEventListener('click',()=>{if(!contactForm.reportValidity())return;const form=new FormData(contactForm),subject=encodeURIComponent('Заявка на проект — '+form.get('name')),bodyText=encodeURIComponent(getLeadDraft());formStatus.textContent='Откроется готовое письмо на medoyv@vk.com. Нажмите «Отправить» в почтовой программе.';formStatus.classList.add('show');window.location.href='mailto:medoyv@vk.com?subject='+subject+'&body='+bodyText});
+  </script>
+</body>
+</html>

@@ -6,11 +6,25 @@
   <meta name="theme-color" content="#090b08">
   <meta name="description" content="Проектирование корпусной мебели в Базис Мебельщик. Шкафы, кухни и мебель под размер — от эскиза до файлов для производства.">
   <title>medoyvmb — проектирование мебели в Базис Мебельщик</title>
+  <link rel="canonical" href="https://medoyv.github.io/medoyvmb-portfolio/">
+  <meta name="robots" content="index,follow">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="medoyvmb">
+  <meta property="og:title" content="medoyvmb — проектирование мебели в Базис Мебельщик">
+  <meta property="og:description" content="Проектирование шкафов, кухонь и мебели под размер. 3D-модель, чертежи и файлы для производства.">
+  <meta property="og:url" content="https://medoyv.github.io/medoyvmb-portfolio/">
+  <meta property="og:image" content="https://medoyv.github.io/medoyvmb-portfolio/social-preview-furniture.jpg">
+  <meta property="og:image:alt" content="Портфолио medoyvmb: проектирование шкафов, кухонь и мебели под размер">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="medoyvmb — проектирование мебели">
+  <meta name="twitter:description" content="Шкафы, кухни и мебель под размер — от 3D-модели до файлов для производства.">
+  <meta name="twitter:image" content="https://medoyv.github.io/medoyvmb-portfolio/social-preview-furniture.jpg">
   <link rel="preload" as="image" href="assets/wardrobe-768.jpg" media="(max-width: 640px)" fetchpriority="high">
   <link rel="preload" as="image" href="assets/wardrobe.jpg" media="(min-width: 641px)" fetchpriority="high">
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
-    :root{--bg:#090b08;--panel:#10130e;--panel-2:#151a12;--line:#292d24;--text:#f0f1e9;--muted:#9a9d91;--olive:#a5c46b;--olive-dark:#7c9b45;--warm:#c7b99d;--max:1320px;--ease-out:cubic-bezier(.16,1,.3,1);--ease-soft:cubic-bezier(.22,.61,.36,1)}
+    :root{color-scheme:dark;--bg:#090b08;--panel:#10130e;--panel-2:#151a12;--line:#292d24;--text:#f0f1e9;--muted:#9a9d91;--olive:#a5c46b;--olive-dark:#7c9b45;--warm:#c7b99d;--max:1320px;--ease-out:cubic-bezier(.16,1,.3,1);--ease-soft:cubic-bezier(.22,.61,.36,1)}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth;scroll-padding-top:82px}
     body{margin:0;padding-bottom:env(safe-area-inset-bottom);background:var(--bg);color:var(--text);font-family:Inter,Manrope,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
@@ -19,6 +33,7 @@
     button,input,textarea{font:inherit}
     button{color:inherit}
     img{display:block;max-width:100%}
+    :where(a,button,summary,input,textarea,select):focus-visible{outline:2px solid var(--olive);outline-offset:3px}
     .wrap{width:min(var(--max),calc(100% - 72px));margin-inline:auto}
     .site-header{height:76px;position:sticky;top:0;z-index:20;background:rgba(9,11,8,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08)}
     .header-inner{height:100%;display:flex;align-items:center;justify-content:space-between}
@@ -171,7 +186,7 @@
     .form-submit,.form-email{width:100%;justify-content:space-between;cursor:pointer;margin-top:5px}
     .form-email{margin-top:9px}
     .form-note{font-size:10px;color:var(--muted);line-height:1.5;margin:12px 0 0}
-    .form-status{display:none;color:var(--olive);font-size:12px;margin:14px 0 0}.form-status.show{display:block}
+    .form-status{display:none;color:var(--olive);font-size:12px;margin:14px 0 0}.form-status.show{display:block}.request-draft-fallback[hidden]{display:none}
     footer{border-top:1px solid var(--line);padding:23px 0 28px;color:var(--muted);font-size:10px}
     .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}.footer-nav{display:flex;gap:18px;flex-wrap:wrap}.footer-nav a:hover{color:var(--olive)}
     .modal{position:fixed;inset:0;background:rgba(3,5,3,.88);backdrop-filter:blur(10px);z-index:50;display:none;align-items:center;justify-content:center;padding:24px}
@@ -192,7 +207,8 @@
     @keyframes menu-panel-in{from{opacity:0;backdrop-filter:blur(0)}to{opacity:1;backdrop-filter:blur(14px)}}
     @keyframes menu-link-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
     @media(max-width:900px){.wrap{width:calc(100% - 48px)}.hero{padding-top:55px}.hero-name{font-size:clamp(72px,14vw,130px)}.hero-grid{grid-template-columns:1fr 1fr}.hero-copy{padding-right:28px;min-height:410px}.hero-photo{min-height:410px}.about-grid{gap:42px}.price-grid{grid-template-columns:1fr}.price-card{min-height:auto;border-right:0;border-bottom:1px solid var(--line)}.price-card h3{margin-top:24px}.price-card:last-child{border-bottom:0}.contact-grid{gap:36px}}
-    @media(max-width:640px){.wrap{width:calc(100% - 36px)}.site-header{height:64px}.menu-panel{inset:64px 0 0}.availability{display:none}.menu-btn{height:40px;padding:0 11px;font-size:10px}.brand-mark{width:36px;height:36px}.hero{padding-top:40px}.hero-top{display:block;margin-bottom:28px}.hero-name{font-size:clamp(69px,17.8vw,112px);letter-spacing:-.09em}.hero-order{display:inline-block;margin:17px 0 0;font-size:12px}.hero-grid{grid-template-columns:1fr}.hero-copy{min-height:0;padding:17px 0 24px}.hero-description{font-size:27px;margin:33px 0 16px}.hero-note{font-size:13px;margin-bottom:20px}.button{min-height:45px;padding:0 14px;gap:16px}.hero-photo{min-height:250px;aspect-ratio:1.45}.photo-caption{left:16px;right:16px;bottom:15px;font-size:9px}.service-strip{grid-template-columns:1fr}.service-item,.service-item:not(:first-child){min-height:72px;padding:13px 0;grid-template-columns:35px 30px 1fr auto;border-right:0;border-bottom:1px solid var(--line)}.service-item:last-child{border-bottom:0}.service-title{font-size:13px}.service-symbol{font-size:22px}section{padding:76px 0}.section-head{grid-template-columns:1fr;gap:16px;margin-bottom:28px}.section-kicker{margin-bottom:14px}.section-title{font-size:clamp(38px,11vw,58px)}.section-aside{justify-self:start;font-size:12px}.filter-row{margin-inline:-18px;padding-left:18px;margin-bottom:16px}.filter{min-width:82px;padding:13px 15px}.project-grid{grid-template-columns:1fr;gap:14px}.project-image{aspect-ratio:1.45}.project-info{padding:16px}.project-name{font-size:19px}.project-desc{font-size:12px}.about-grid{grid-template-columns:1fr;gap:14px}.about-copy p{font-size:13px}.about-stats{margin-top:28px}.stat strong{font-size:21px}.stat span{font-size:9px}.deliverables{padding-top:12px}.deliverable{font-size:12px}.price-card{padding:22px 18px}.review-box{grid-template-columns:1fr}.review-label{min-height:130px;border-right:0;border-bottom:1px solid var(--line);padding:20px;flex-direction:row;align-items:end}.review-label strong{font-size:64px}.review-copy{padding:24px 20px}.review-copy p{font-size:23px}.steps{grid-template-columns:1fr 1fr}.step{min-height:205px;padding:18px 14px 20px 0}.step:not(:first-child){padding-left:14px}.step:nth-child(2){border-right:0}.step:nth-child(-n+2){border-bottom:1px solid var(--line)}.step h3{font-size:18px;margin-top:27px}.step p{font-size:11px}.contact-grid{grid-template-columns:1fr;gap:32px}.contact-list{margin-top:30px}.contact-link{grid-template-columns:34px 82px minmax(0,1fr) auto;gap:8px}.contact-label{font-size:8px}.contact-value{font-size:12px}.contact-form{padding:22px 18px}.footer-inner{align-items:flex-start;flex-direction:column}.footer-nav{gap:12px 16px}.modal{padding:14px}.modal-panel{grid-template-columns:1fr;max-height:92vh;overflow:auto}.modal-panel img{height:240px;min-height:0}.modal-details{padding:22px}.modal-details h2{font-size:26px}.menu-links a{font-size:38px;padding-bottom:14px}}
+    @media(max-width:760px){.contact-grid{grid-template-columns:1fr}}
+    @media(max-width:640px){.wrap{width:calc(100% - 36px)}.site-header{height:64px}.menu-panel{inset:64px 0 0}.availability{display:none}.menu-btn{height:40px;padding:0 11px;font-size:10px}.brand-mark{width:36px;height:36px}.hero{padding-top:40px}.hero-top{display:block;margin-bottom:28px}.hero-name{font-size:clamp(54px,17.8vw,112px);letter-spacing:-.09em}.hero-order{display:inline-block;margin:17px 0 0;font-size:12px}.hero-grid{grid-template-columns:1fr}.hero-copy{min-height:0;padding:17px 0 24px}.hero-description{font-size:27px;margin:33px 0 16px}.hero-note{font-size:13px;margin-bottom:20px}.button{min-height:45px;padding:0 14px;gap:16px}.hero-photo{min-height:250px;aspect-ratio:1.45}.photo-caption{left:16px;right:16px;bottom:15px;font-size:9px}.service-strip{grid-template-columns:1fr}.service-item,.service-item:not(:first-child){min-height:72px;padding:13px 0;grid-template-columns:35px 30px 1fr auto;border-right:0;border-bottom:1px solid var(--line)}.service-item:last-child{border-bottom:0}.service-title{font-size:13px}.service-symbol{font-size:22px}section{padding:76px 0}.section-head{grid-template-columns:1fr;gap:16px;margin-bottom:28px}.section-kicker{margin-bottom:14px}.section-title{font-size:clamp(38px,11vw,58px)}.section-aside{justify-self:start;font-size:12px}.filter-row{margin-inline:-18px;padding-left:18px;margin-bottom:16px}.filter{min-width:82px;padding:13px 15px}.project-grid{grid-template-columns:1fr;gap:14px}.project-image{aspect-ratio:1.45}.project-info{padding:16px}.project-name{font-size:19px}.project-desc{font-size:12px}.about-grid{grid-template-columns:1fr;gap:14px}.about-copy p{font-size:13px}.about-stats{margin-top:28px}.stat strong{font-size:21px}.stat span{font-size:9px}.deliverables{padding-top:12px}.deliverable{font-size:12px}.price-card{padding:22px 18px}.review-box{grid-template-columns:1fr}.review-label{min-height:130px;border-right:0;border-bottom:1px solid var(--line);padding:20px;flex-direction:row;align-items:end}.review-label strong{font-size:64px}.review-copy{padding:24px 20px}.review-copy p{font-size:23px}.steps{grid-template-columns:1fr 1fr}.step{min-height:205px;padding:18px 14px 20px 0}.step:not(:first-child){padding-left:14px}.step:nth-child(2){border-right:0}.step:nth-child(-n+2){border-bottom:1px solid var(--line)}.step h3{font-size:18px;margin-top:27px}.step p{font-size:11px}.contact-grid{grid-template-columns:1fr;gap:32px}.contact-list{margin-top:30px}.contact-link{grid-template-columns:34px 82px minmax(0,1fr) auto;gap:8px}.contact-label{font-size:8px}.contact-value{font-size:12px}.contact-form{padding:22px 18px}.footer-inner{align-items:flex-start;flex-direction:column}.footer-nav{gap:12px 16px}.modal{padding:14px}.modal-panel{grid-template-columns:1fr;max-height:92vh;overflow:auto}.modal-panel img{height:240px;min-height:0}.modal-details{padding:22px}.modal-details h2{font-size:26px}.menu-links a{font-size:38px;padding-bottom:14px}}
     @media(max-width:640px){body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}.telegram-webapp{padding-bottom:env(safe-area-inset-bottom)}.faq-item summary{padding:17px 0;font-size:13px}.faq-answer{padding:0 28px 18px 0;font-size:12px}.mobile-cta{position:fixed;left:18px;right:18px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:25;display:flex;justify-content:space-between;align-items:center;min-height:52px;padding:0 18px;background:var(--olive);border:1px solid var(--olive);color:#10140c;font-size:13px;font-weight:600;box-shadow:0 12px 32px rgba(0,0,0,.42);transition:opacity .3s var(--ease-soft),visibility .3s,transform .38s var(--ease-out)}.mobile-cta:active{transform:scale(.98)}.mobile-cta.is-hidden{opacity:0;visibility:hidden;transform:translateY(12px);pointer-events:none}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}.motion-ready .scroll-reveal,.motion-ready .scroll-reveal.is-visible{opacity:1;transform:none;transition:none}.motion-ready .site-header,.motion-ready .hero-name,.menu-open .menu-links a{animation:none!important}}
 
@@ -213,7 +229,7 @@
           <a class="brand-social-link" href="mailto:medoyv@vk.com" aria-label="Почта medoyv@vk.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m4 7 8 6 8-6"/></svg></a>
         </div>
       </div>
-      <div class="header-actions"><span class="availability">Принимаю заказы</span><button class="menu-btn" id="menuToggle" aria-expanded="false" aria-controls="mainMenu"><span>Меню</span><span class="burger" aria-hidden="true"><i></i><i></i></span></button></div>
+      <div class="header-actions"><span class="availability">Принимаю заказы</span><button class="menu-btn" id="menuToggle" type="button" aria-expanded="false" aria-controls="mainMenu"><span>Меню</span><span class="burger" aria-hidden="true"><i></i><i></i></span></button></div>
     </div>
   </header>
   <nav class="menu-panel" id="mainMenu" aria-label="Основная навигация">
@@ -245,7 +261,7 @@
       <div class="wrap">
         <div class="section-head"><div><p class="section-kicker">01&nbsp; / &nbsp;Мои работы</p><h2 class="section-title">Проекты и готовая мебель</h2></div><p class="section-aside"><a href="https://kwork.ru/user/medoyv" target="_blank" rel="noreferrer">Все работы на Kwork ↗</a></p></div>
         <div class="filter-row" role="group" aria-label="Фильтр проектов">
-          <button class="filter active" data-filter="all">Все</button><button class="filter" data-filter="wardrobes">Шкафы</button><button class="filter" data-filter="kitchens">Кухни</button><button class="filter" data-filter="niches">Ниши</button><button class="filter" data-filter="projects">Проекты</button>
+          <button class="filter active" type="button" data-filter="all" aria-pressed="true">Все</button><button class="filter" type="button" data-filter="wardrobes" aria-pressed="false">Шкафы</button><button class="filter" type="button" data-filter="kitchens" aria-pressed="false">Кухни</button><button class="filter" type="button" data-filter="niches" aria-pressed="false">Ниши</button><button class="filter" type="button" data-filter="projects" aria-pressed="false">Проекты</button>
         </div>
         <div class="project-grid">
           <button class="project-card" data-category="wardrobes" data-title="Встроенный шкаф в нишу" data-type="Шкафы" data-desc="Шкаф от пола до потолка с зелёными фасадами. Проект, чертежи и карта раскроя." data-image="assets/wardrobe.jpg" aria-label="Подробнее: Встроенный шкаф в нишу">
@@ -326,7 +342,6 @@
       </div>
     </section>
 
-    <section class="contacts" id="contacts">
     <section class="faq" id="faq">
       <div class="wrap"><div class="section-head"><div><p class="section-kicker">06&nbsp; / &nbsp;Частые вопросы</p><h2 class="section-title">Перед началом проекта</h2></div><p class="section-aside">Коротко о том, что обычно важно знать до расчёта и проектирования.</p></div>
         <div class="faq-list">
@@ -338,6 +353,7 @@
         </div>
       </div>
     </section>
+    <section class="contacts" id="contacts">
       <div class="wrap"><div class="contact-grid">
         <div class="contact-copy"><p class="section-kicker">07&nbsp; / &nbsp;Контакты</p><h2 class="section-title">Обсудим ваш проект</h2><p>Пришлите размеры, эскиз или фото помещения — отвечу, сколько будет стоить проект и в какие сроки.</p><a class="button" href="https://kwork.ru/user/medoyv" target="_blank" rel="noreferrer">Написать на Kwork <span class="arrow">↗</span></a>
           <div class="contact-list">
@@ -352,14 +368,14 @@
             </a>
           </div>
         </div>
-        <form class="contact-form" id="contactForm"><p class="form-caption">Заявка на проект</p><div class="field"><label for="name">Имя</label><input id="name" name="name" placeholder="Как к вам обращаться?" required></div><div class="field"><label for="reply">Контакт для связи</label><input id="reply" name="reply" placeholder="Телефон, Telegram или почта" required></div><div class="field"><label for="task">Задача</label><textarea id="task" name="task" rows="3" placeholder="Что нужно спроектировать?" required></textarea></div><button class="button form-submit" type="submit">Перейти в бота с заявкой <span class="arrow">↗</span></button><button class="button secondary form-email" id="emailSubmit" type="button">Подготовить письмо <span class="arrow">↗</span></button><p class="form-note">Откроется бот @medoyv_mebels_bot с черновиком заявки. В Telegram нажмите «Отправить», затем сможете приложить эскизы и фото.</p><p class="form-status" id="formStatus" role="status"></p></form>
+        <form class="contact-form" id="contactForm"><p class="form-caption">Заявка на проект</p><div class="field"><label for="name">Имя</label><input id="name" name="name" autocomplete="name" placeholder="Как к вам обращаться?" required></div><div class="field"><label for="reply">Контакт для связи</label><input id="reply" name="reply" placeholder="Телефон, Telegram или почта" required></div><div class="field"><label for="task">Задача</label><textarea id="task" name="task" rows="3" placeholder="Что нужно спроектировать?" required></textarea></div><button class="button form-submit" type="submit">Перейти в бота с заявкой <span class="arrow">↗</span></button><button class="button secondary form-email" id="emailSubmit" type="button">Подготовить письмо <span class="arrow">↗</span></button><p class="form-note">Текст заявки будет скопирован. В боте вставьте его и отправьте — затем сможете приложить эскизы и фото.</p><p class="form-status" id="formStatus" role="status" aria-live="polite"></p><div class="request-draft-fallback" id="requestDraftFallback" hidden><div class="field"><label for="requestDraft">Скопируйте текст и вставьте его в боте</label><textarea id="requestDraft" rows="5" readonly></textarea></div><a class="button secondary" href="https://t.me/medoyv_mebels_bot?start=portfolio" target="_blank" rel="noreferrer">Открыть @medoyv_mebels_bot <span class="arrow">↗</span></a></div></form>
       </div></div>
     </section>
   </main>
   <footer><div class="wrap footer-inner"><span>medoyvmb © <span id="year"></span> &nbsp;— проектирование мебели в Базис Мебельщик</span><nav class="footer-nav" aria-label="Ссылки в подвале"><a href="#works">Мои работы</a><a href="#about">Обо мне</a><a href="#prices">Услуги и цены</a><a href="#reviews">Отзывы</a><a href="#process">Как я работаю</a><a href="#faq">Вопросы</a><a href="#contacts">Контакты</a></nav></div></footer>
   <a class="mobile-cta" href="#contacts" aria-label="Перейти к форме заявки"><span>Обсудить проект</span><span aria-hidden="true">↗</span></a>
 
-  <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-panel"><button class="modal-close" id="modalClose" aria-label="Закрыть">×</button><img id="modalImage" src="" alt=""><div class="modal-details"><div class="project-meta"><span id="modalType"></span><span id="modalNumber"></span></div><h2 id="modalTitle"></h2><p id="modalDesc"></p><a class="button" href="#contacts" id="modalContact">Обсудить похожий проект <span class="arrow">↗</span></a></div></div></div>
+  <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle"><div class="modal-panel"><button class="modal-close" id="modalClose" type="button" aria-label="Закрыть">×</button><img id="modalImage" src="" alt="" width="1536" height="1024" decoding="async"><div class="modal-details"><div class="project-meta"><span id="modalType"></span><span id="modalNumber"></span></div><h2 id="modalTitle"></h2><p id="modalDesc"></p><a class="button" href="#contacts" id="modalContact">Обсудить похожий проект <span class="arrow">↗</span></a></div></div></div>
   <script>
     const telegramApp=window.Telegram?.WebApp;
     if(telegramApp){telegramApp.ready?.();telegramApp.expand?.();document.body.classList.add('telegram-webapp')}
@@ -373,28 +389,77 @@
     brandGroup.addEventListener('focusout',event=>{if(!brandGroup.contains(event.relatedTarget))socialToggle.setAttribute('aria-expanded',String(brandGroup.classList.contains('social-open')))});
     brandGroup.querySelectorAll('.brand-social-link').forEach(link=>link.addEventListener('click',()=>setSocialsOpen(false)));
     document.addEventListener('click',event=>{if(!brandGroup.contains(event.target))setSocialsOpen(false)});
-    function closeMenu(){body.classList.remove('menu-open');menuToggle.setAttribute('aria-expanded','false')}
-    menuToggle.addEventListener('click',()=>{const open=body.classList.toggle('menu-open');menuToggle.setAttribute('aria-expanded',String(open))});
-    mainMenu.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
-    document.addEventListener('keydown',event=>{if(event.key==='Escape'){closeMenu();closeModal();setSocialsOpen(false);closeServiceTips()}});
+    const menuLinks=[...mainMenu.querySelectorAll('a')];
+    function closeMenu({restoreFocus=false}={}){const wasOpen=body.classList.contains('menu-open');body.classList.remove('menu-open');menuToggle.setAttribute('aria-expanded','false');if(restoreFocus&&wasOpen)menuToggle.focus({preventScroll:true})}
+    menuToggle.addEventListener('click',()=>{const open=!body.classList.contains('menu-open');body.classList.toggle('menu-open',open);menuToggle.setAttribute('aria-expanded',String(open));if(open)menuLinks[0]?.focus({preventScroll:true})});
+    menuLinks.forEach(link=>link.addEventListener('click',()=>closeMenu({restoreFocus:true})));
+    document.addEventListener('keydown',event=>{
+      if(body.classList.contains('menu-open')&&event.key==='Tab'){
+        const first=menuLinks[0],last=menuLinks[menuLinks.length-1],active=document.activeElement;
+        if(event.shiftKey&&(active===first||active===menuToggle)){event.preventDefault();(active===first?menuToggle:last).focus()}
+        else if(!event.shiftKey&&(active===last||active===menuToggle)){event.preventDefault();(active===last?menuToggle:first).focus()}
+      }
+      if(event.key==='Escape'){closeMenu({restoreFocus:true});closeModal();setSocialsOpen(false);closeServiceTips()}
+    });
     document.getElementById('year').textContent=new Date().getFullYear();
     const mobileCta=document.querySelector('.mobile-cta');
     if('IntersectionObserver' in window){const contactCtaObserver=new IntersectionObserver(entries=>entries.forEach(entry=>mobileCta.classList.toggle('is-hidden',entry.isIntersecting)),{threshold:.12});contactCtaObserver.observe(document.getElementById('contacts'))}
     const serviceItems=[...document.querySelectorAll('.service-item')];
     function closeServiceTips(){serviceItems.forEach(item=>{item.classList.remove('is-open');item.setAttribute('aria-expanded','false')})}
     serviceItems.forEach(item=>item.addEventListener('click',event=>{event.stopPropagation();const shouldOpen=!item.classList.contains('is-open');closeServiceTips();if(shouldOpen){item.classList.add('is-open');item.setAttribute('aria-expanded','true')}}));
+    document.querySelector('.service-strip').addEventListener('focusout',event=>{if(!event.currentTarget.contains(event.relatedTarget))closeServiceTips()});
     document.addEventListener('click',event=>{if(!event.target.closest('.service-item'))closeServiceTips()});
     const filters=[...document.querySelectorAll('.filter')],cards=[...document.querySelectorAll('.project-card')];
-    filters.forEach(filter=>filter.addEventListener('click',()=>{filters.forEach(item=>item.classList.toggle('active',item===filter));const value=filter.dataset.filter;cards.forEach(card=>card.hidden=value!=='all'&&card.dataset.category!==value)}));
+    filters.forEach(filter=>filter.addEventListener('click',()=>{filters.forEach(item=>{const active=item===filter;item.classList.toggle('active',active);item.setAttribute('aria-pressed',String(active))});const value=filter.dataset.filter;cards.forEach(card=>card.hidden=value!=='all'&&card.dataset.category!==value)}));
     if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){const revealTargets=[...document.querySelectorAll('.hero-copy,.hero-photo,.service-item,.section-head,.filter-row,.project-card,.about-grid>*,.price-card,.review-box,.step,.contact-grid>*,footer .footer-inner')];revealTargets.forEach((element,index)=>{element.classList.add('scroll-reveal');element.style.setProperty('--motion-delay',`${(index%4)*55}ms`)});body.classList.add('motion-ready');const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target)}}),{threshold:.14,rootMargin:'0px 0px -36px 0px'});revealTargets.forEach(element=>revealObserver.observe(element))}
-    const modal=document.getElementById('projectModal'),modalImage=document.getElementById('modalImage');
-    function closeModal(){modal.classList.remove('open');body.style.overflow=''}
-    cards.forEach(card=>card.addEventListener('click',()=>{const data=card.dataset;document.getElementById('modalTitle').textContent=data.title;document.getElementById('modalType').textContent=data.type;document.getElementById('modalNumber').textContent=String(cards.indexOf(card)+1).padStart(2,'0');document.getElementById('modalDesc').textContent=data.desc;if(data.image==='blueprint'){modalImage.src='';modalImage.alt='';modalImage.style.display='none'}else{modalImage.src=data.image;modalImage.alt=data.title;modalImage.style.display='block'}modal.classList.add('open');body.style.overflow='hidden'}));
-    document.getElementById('modalClose').addEventListener('click',closeModal);modal.addEventListener('click',event=>{if(event.target===modal)closeModal()});document.getElementById('modalContact').addEventListener('click',()=>{const task=document.getElementById('task'),title=document.getElementById('modalTitle').textContent,description=document.getElementById('modalDesc').textContent;task.value='Здравствуйте! Хочу обсудить похожий проект: '+title+'.\nПожелание: '+description;closeModal()});
-    const contactForm=document.getElementById('contactForm'),formStatus=document.getElementById('formStatus');
+    const modal=document.getElementById('projectModal'),modalImage=document.getElementById('modalImage'),modalClose=document.getElementById('modalClose');
+    let modalReturnFocus=null,previousBodyOverflow='';
+    function closeModal({restoreFocus=true}={}){
+      if(!modal.classList.contains('open'))return;
+      modal.classList.remove('open');modal.setAttribute('aria-hidden','true');body.style.overflow=previousBodyOverflow;
+      const returnFocus=modalReturnFocus;modalReturnFocus=null;
+      if(restoreFocus&&returnFocus?.isConnected&&!returnFocus.hidden)returnFocus.focus({preventScroll:true});
+    }
+    cards.forEach(card=>card.addEventListener('click',()=>{
+      const data=card.dataset;
+      document.getElementById('modalTitle').textContent=data.title;document.getElementById('modalType').textContent=data.type;document.getElementById('modalNumber').textContent=String(cards.indexOf(card)+1).padStart(2,'0');document.getElementById('modalDesc').textContent=data.desc;
+      if(data.image==='blueprint'){modalImage.removeAttribute('src');modalImage.alt='';modalImage.style.display='none'}else{modalImage.src=data.image;modalImage.alt=data.title;modalImage.style.display='block'}
+      modalReturnFocus=card;previousBodyOverflow=body.style.overflow;modal.setAttribute('aria-hidden','false');modal.classList.add('open');body.style.overflow='hidden';modalClose.focus({preventScroll:true});
+    }));
+    modal.addEventListener('keydown',event=>{
+      if(event.key!=='Tab')return;
+      const focusable=[...modal.querySelectorAll('button:not([disabled]),a[href]:not([aria-hidden="true"])')].filter(element=>element.getClientRects().length);
+      if(!focusable.length)return;
+      const first=focusable[0],last=focusable[focusable.length-1];
+      if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
+      else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+    });
+    modalClose.addEventListener('click',()=>closeModal());modal.addEventListener('click',event=>{if(event.target===modal)closeModal()});
+    document.getElementById('modalContact').addEventListener('click',()=>{
+      const task=document.getElementById('task'),title=document.getElementById('modalTitle').textContent,description=document.getElementById('modalDesc').textContent;
+      task.value='Здравствуйте! Хочу обсудить похожий проект: '+title+'.\nПожелание: '+description;closeModal({restoreFocus:false});requestAnimationFrame(()=>task.focus({preventScroll:true}));
+    });
+    const contactForm=document.getElementById('contactForm'),formStatus=document.getElementById('formStatus'),requestDraftFallback=document.getElementById('requestDraftFallback'),requestDraft=document.getElementById('requestDraft');
+    const botStartUrl='https://t.me/medoyv_mebels_bot?start=portfolio';
+    function normalizeForm(){contactForm.querySelectorAll('[required]').forEach(field=>{field.value=field.value.trim()});return contactForm.reportValidity()}
     function getLeadDraft(){const form=new FormData(contactForm);return 'Заявка с портфолио medoyvmb\nИмя: '+form.get('name')+'\nКонтакт: '+form.get('reply')+'\n\nЗадача:\n'+form.get('task')}
-    contactForm.addEventListener('submit',event=>{event.preventDefault();const draft=getLeadDraft(),url='https://t.me/medoyv_mebels_bot?start=portfolio&text='+encodeURIComponent(draft);formStatus.textContent='Откроется @medoyv_mebels_bot. Если черновик не появится, бот поможет заполнить заявку по шагам.';formStatus.classList.add('show');if(telegramApp?.openTelegramLink){telegramApp.openTelegramLink(url)}else{window.location.href=url}});
-    document.getElementById('emailSubmit').addEventListener('click',()=>{if(!contactForm.reportValidity())return;const form=new FormData(contactForm),subject=encodeURIComponent('Заявка на проект — '+form.get('name')),bodyText=encodeURIComponent(getLeadDraft());formStatus.textContent='Откроется готовое письмо на medoyv@vk.com. Нажмите «Отправить» в почтовой программе.';formStatus.classList.add('show');window.location.href='mailto:medoyv@vk.com?subject='+subject+'&body='+bodyText});
+    function showDraftFallback(draft){requestDraft.value=draft;requestDraftFallback.hidden=false;formStatus.textContent='Браузер не разрешил скопировать заявку автоматически. Скопируйте выделенный текст, затем откройте бота и отправьте его.';formStatus.classList.add('show');requestDraft.focus();requestDraft.select()}
+    function openLeadBot(){if(telegramApp?.openTelegramLink)telegramApp.openTelegramLink(botStartUrl);else window.location.href=botStartUrl}
+    contactForm.addEventListener('submit',async event=>{
+      event.preventDefault();if(!normalizeForm())return;
+      const draft=getLeadDraft();requestDraftFallback.hidden=true;
+      if(!navigator.clipboard?.writeText){showDraftFallback(draft);return}
+      try{
+        await navigator.clipboard.writeText(draft);
+        formStatus.textContent='Заявка скопирована. Вставьте её в чате с @medoyv_mebels_bot и отправьте, затем прикрепите фото или эскиз.';formStatus.classList.add('show');openLeadBot();
+      }catch{showDraftFallback(draft)}
+    });
+    document.getElementById('emailSubmit').addEventListener('click',()=>{
+      if(!normalizeForm())return;
+      requestDraftFallback.hidden=true;
+      const form=new FormData(contactForm),subject=encodeURIComponent('Заявка на проект — '+form.get('name')),bodyText=encodeURIComponent(getLeadDraft());
+      formStatus.textContent='Откроется готовое письмо на medoyv@vk.com. Нажмите «Отправить» в почтовой программе.';formStatus.classList.add('show');window.location.href='mailto:medoyv@vk.com?subject='+subject+'&body='+bodyText;
+    });
   </script>
 </body>
 </html>

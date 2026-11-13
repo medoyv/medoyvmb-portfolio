@@ -228,6 +228,8 @@
     .contact-value{font-size:14px}.contact-arrow{color:var(--olive)}
     .contact-form{background:#151912;border:1px solid #343b2d;padding:28px}
     .form-caption{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--olive);margin:0 0 24px}
+    .yandex-form-title{font-size:23px;line-height:1.2;letter-spacing:-.04em;margin:0 0 12px}
+    .yandex-form-description{color:var(--muted);font-size:13px;line-height:1.6;margin:0 0 22px}
     .field{display:grid;gap:8px;margin-bottom:18px}.field label{font-size:11px;color:var(--muted)}
     .field input,.field textarea{width:100%;border:0;border-bottom:1px solid #454a3d;background:transparent;color:var(--text);border-radius:0;outline:none;padding:8px 0 11px;font-size:14px;resize:vertical}
     .field input:focus,.field textarea:focus{border-color:var(--olive)}.field input::placeholder,.field textarea::placeholder{color:#666b5f}
@@ -421,7 +423,7 @@
             </a>
           </div>
         </div>
-        <form class="contact-form" id="contactForm"><input type="hidden" name="_subject" value="Новая заявка с medoyvmb.site"><input type="hidden" name="_template" value="table"><input class="form-honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true"><p class="form-caption">Заявка на проект</p><div class="field"><label for="name">Имя</label><input id="name" name="name" autocomplete="name" placeholder="Как к вам обращаться?" required></div><div class="field"><label for="reply">Контакт для связи</label><input id="reply" name="reply" placeholder="Телефон, Telegram или почта" required></div><div class="field"><label for="task">Задача</label><textarea id="task" name="task" rows="3" placeholder="Что нужно спроектировать?" required></textarea></div><button class="button form-submit" id="emailSubmit" type="submit">Отправить заявку на почту <span class="arrow">↗</span></button><button class="button secondary form-email" id="telegramSubmit" type="button">Добавить эскиз в Telegram <span class="arrow">↗</span></button><p class="form-note">Заявка придёт на medoyv@vk.com. Эскиз или фото можно отправить через Telegram. Данные передаются через сервис обработки формы.</p><p class="form-status" id="formStatus" role="status" aria-live="polite"></p><div class="request-draft-fallback" id="requestDraftFallback" hidden><div class="field"><label for="requestDraft">Скопируйте текст и вставьте его в боте</label><textarea id="requestDraft" rows="5" readonly></textarea></div><a class="button secondary" href="https://t.me/medoyv_mebels_bot?start=portfolio" target="_blank" rel="noreferrer">Открыть @medoyv_mebels_bot <span class="arrow">↗</span></a></div></form>
+        <div class="contact-form" id="contactForm"><p class="form-caption">Заявка через Яндекс Формы</p><h3 class="yandex-form-title">Расскажите о вашем проекте</h3><p class="yandex-form-description">Укажите тип мебели, размеры помещения, пожелания и удобный способ связи. Фото или эскиз можно приложить прямо в форме. Обычно отвечаю в течение 15 минут.</p><a class="button form-submit" id="yandexFormLink" href="https://forms.yandex.ru/u/6af71de96f1ca48e8b70d2c6/" target="_blank" rel="noopener noreferrer">Заполнить заявку <span class="arrow">↗</span></a><p class="form-note">Если вам удобнее, можно написать мне в Telegram.</p><a class="button secondary form-email" href="https://t.me/medoyv_mebels_bot?start=portfolio" target="_blank" rel="noopener noreferrer">Написать в Telegram <span class="arrow">↗</span></a></div>
       </div></div>
     </section>
   </main>
@@ -489,36 +491,7 @@
       else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
     });
     modalClose.addEventListener('click',()=>closeModal());modal.addEventListener('click',event=>{if(event.target===modal)closeModal()});
-    document.getElementById('modalContact').addEventListener('click',()=>{
-      const task=document.getElementById('task'),title=document.getElementById('modalTitle').textContent,description=document.getElementById('modalDesc').textContent;
-      task.value='Здравствуйте! Хочу обсудить похожий проект: '+title+'.\nПожелание: '+description;closeModal({restoreFocus:false});requestAnimationFrame(()=>task.focus({preventScroll:true}));
-    });
-    const contactForm=document.getElementById('contactForm'),formStatus=document.getElementById('formStatus'),requestDraftFallback=document.getElementById('requestDraftFallback'),requestDraft=document.getElementById('requestDraft');
-    const botStartUrl='https://t.me/medoyv_mebels_bot?start=portfolio';
-    function normalizeForm(){contactForm.querySelectorAll('[required]').forEach(field=>{field.value=field.value.trim()});return contactForm.reportValidity()}
-    function getLeadDraft(){const form=new FormData(contactForm);return 'Заявка с портфолио medoyvmb\nИмя: '+form.get('name')+'\nКонтакт: '+form.get('reply')+'\n\nЗадача:\n'+form.get('task')}
-    function showDraftFallback(draft){requestDraft.value=draft;requestDraftFallback.hidden=false;formStatus.textContent='Браузер не разрешил скопировать заявку автоматически. Скопируйте выделенный текст, затем откройте бота и отправьте его.';formStatus.classList.add('show');requestDraft.focus();requestDraft.select()}
-    function openLeadBot(){if(telegramApp?.openTelegramLink)telegramApp.openTelegramLink(botStartUrl);else window.location.href=botStartUrl}
-    const emailButton=document.getElementById('emailSubmit');
-    contactForm.addEventListener('submit',async event=>{
-      event.preventDefault();if(!normalizeForm())return;
-      requestDraftFallback.hidden=true;formStatus.classList.remove('show');emailButton.disabled=true;emailButton.firstChild.textContent='Отправляем заявку…';
-      const payload=Object.fromEntries(new FormData(contactForm).entries());
-      try{
-        const response=await fetch('https://formsubmit.co/ajax/medoyv@vk.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
-        const result=await response.json();if(!response.ok||result.success===false||result.success==='false')throw new Error('Form delivery failed');
-        contactForm.reset();formStatus.textContent='Заявка отправлена. Обычно отвечаю в течение 15 минут.';formStatus.classList.add('show');
-      }catch{
-        formStatus.textContent='Не получилось отправить заявку. Напишите мне в Telegram — кнопка ниже.';formStatus.classList.add('show');
-      }finally{emailButton.disabled=false;emailButton.firstChild.textContent='Отправить заявку на почту ';}
-    });
-    document.getElementById('telegramSubmit').addEventListener('click',async()=>{
-      if(!normalizeForm())return;
-      const draft=getLeadDraft();requestDraftFallback.hidden=true;
-      if(!navigator.clipboard?.writeText){showDraftFallback(draft);return}
-      try{await navigator.clipboard.writeText(draft);formStatus.textContent='Заявка скопирована. Вставьте её в чате с @medoyv_mebels_bot и отправьте — там можно приложить фото и эскизы.';formStatus.classList.add('show');openLeadBot()}
-      catch{showDraftFallback(draft)}
-    });
+    document.getElementById('modalContact').addEventListener('click',()=>closeModal({restoreFocus:false}));
   </script>
 </body>
 </html>

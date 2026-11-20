@@ -169,6 +169,10 @@
     .project-meta{display:flex;justify-content:space-between;align-items:center;color:var(--olive);font-size:9px;text-transform:uppercase;letter-spacing:.15em;margin-bottom:10px}
     .project-name{font-size:21px;letter-spacing:-.035em;font-weight:500;margin:0 0 6px}
     .project-desc{font-size:13px;color:var(--muted);margin:0;max-width:520px}
+    .price-cta{background:repeating-linear-gradient(135deg,transparent 0 14px,#ffffff05 14px 15px),var(--panel)}.price-cta-text{color:#b4b7ac;font-size:13px;line-height:1.6;margin:0 0 28px;max-width:320px}
+    .more-row{display:flex;justify-content:center;margin-top:28px}.more-btn{min-width:240px;justify-content:space-between;cursor:pointer}.more-btn[hidden]{display:none}.more-btn .count{color:var(--olive)}
+    .filter .n{margin-left:7px;font-size:10px;opacity:.6}
+    .project-card.is-extra{display:none}
     .blueprint{height:100%;width:100%;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 50%,#28331d 0,#141a11 56%,#0d110b 100%);position:relative;overflow:hidden}
     .blueprint:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#9bb86b18 1px,transparent 1px),linear-gradient(90deg,#9bb86b18 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(135deg,transparent,#000 30%,#000 72%,transparent)}
     .blueprint svg{width:min(72%,420px);position:relative;z-index:1;filter:drop-shadow(0 12px 20px #0008)}
@@ -356,6 +360,7 @@
             <span class="project-image"><picture><source media="(max-width: 640px)" srcset="assets/project-exploded-768.jpg"><img src="assets/project-exploded.jpg" srcset="assets/project-exploded-768.jpg 768w, assets/project-exploded.jpg 1536w" sizes="(max-width: 640px) calc(100vw - 36px), (max-width: 900px) calc(50vw - 30px), 600px" width="1536" height="1024" alt="Разнесённая трёхмерная модель мебельного корпуса с ящиками и фасадами" loading="lazy" decoding="async"></picture><span class="project-number">12</span><span class="open-icon">↗</span></span><span class="project-info"><span class="project-meta"><span>Проекты</span><span>12</span></span><span class="project-name">Сборка корпуса по деталям</span><span class="project-desc">Разнесённая 3D-модель показывает панели, ящики, петли и принцип сборки.</span></span>
           </button>
         </div>
+        <div class="more-row"><button class="button secondary more-btn" id="moreProjects" type="button" hidden><span>Показать ещё <span class="count"></span></span><span class="arrow">↓</span></button></div>
       </div>
     </section>
 
@@ -376,6 +381,7 @@
           <article class="price-card"><div class="price-top"><span>03&nbsp; / &nbsp;Нм</span></div><h3>Нестандартная мебель под размер</h3><ul class="includes"><li>Встроенные шкафы</li><li>Мебель в ниши и под скосы</li><li>Изготовление под ключ</li></ul><div class="price"><strong>По запросу</strong> после замера</div><a class="order-link" href="#contacts">Обсудить проект <span>↗</span></a></article>
           <article class="price-card"><div class="price-top"><span>04&nbsp; / &nbsp;Кх</span></div><h3>Проект кухни</h3><ul class="includes"><li>Планировка и 3D-модель</li><li>Подбор модулей под помещение</li><li>Чертежи и визуализация</li></ul><div class="price"><strong>от 5 000 ₽</strong> за проект</div><a class="order-link" href="#contacts">Обсудить кухню <span>↗</span></a></article>
           <article class="price-card"><div class="price-top"><span>05&nbsp; / &nbsp;Гр</span></div><h3>Проект гардеробной</h3><ul class="includes"><li>Подбор системы хранения</li><li>Учёт размеров и планировки</li><li>Чертежи для производства</li></ul><div class="price"><strong>По согласованию</strong></div><a class="order-link" href="#contacts">Обсудить гардеробную <span>↗</span></a></article>
+          <article class="price-card price-cta"><div class="price-top"><span>06&nbsp; / &nbsp;?</span></div><h3>Не нашли свою задачу?</h3><p class="price-cta-text">Прихожая, стеллаж, комод или другая корпусная мебель — пришлите размеры и фото, и я оценю стоимость и сроки.</p><div class="price"><strong>Индивидуально</strong> после оценки</div><a class="order-link" href="https://t.me/medoyv" target="_blank" rel="noreferrer">Написать в Telegram <span>↗</span></a></article>
         </div>
       </div>
     </section>
@@ -466,7 +472,12 @@
     document.querySelector('.service-strip').addEventListener('focusout',event=>{if(!event.currentTarget.contains(event.relatedTarget))closeServiceTips()});
     document.addEventListener('click',event=>{if(!event.target.closest('.service-item'))closeServiceTips()});
     const filters=[...document.querySelectorAll('.filter')],cards=[...document.querySelectorAll('.project-card')];
-    filters.forEach(filter=>filter.addEventListener('click',()=>{filters.forEach(item=>{const active=item===filter;item.classList.toggle('active',active);item.setAttribute('aria-pressed',String(active))});const value=filter.dataset.filter;cards.forEach(card=>card.hidden=value!=='all'&&card.dataset.category!==value)}));
+    const moreBtn=document.getElementById('moreProjects'),PAGE=6;let expanded=false;
+    filters.forEach(f=>{const v=f.dataset.filter,n=v==='all'?cards.length:cards.filter(c=>c.dataset.category===v).length;f.insertAdjacentHTML('beforeend',`<span class="n">${n}</span>`)});
+    const applyLimit=value=>{const extra=value==='all'&&!expanded;cards.forEach((c,i)=>c.classList.toggle('is-extra',extra&&i>=PAGE));const rest=cards.length-PAGE;moreBtn.hidden=!extra||rest<=0;moreBtn.querySelector('.count').textContent=rest};
+    moreBtn.addEventListener('click',()=>{expanded=true;applyLimit('all');cards[PAGE]?.focus({preventScroll:true})});
+    applyLimit('all');
+    filters.forEach(filter=>filter.addEventListener('click',()=>{filters.forEach(item=>{const active=item===filter;item.classList.toggle('active',active);item.setAttribute('aria-pressed',String(active))});const value=filter.dataset.filter;cards.forEach(card=>card.hidden=value!=='all'&&card.dataset.category!==value);applyLimit(value)}));
     const prefersReducedMotion=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)').matches:false;
     if(!prefersReducedMotion&&'IntersectionObserver' in window){const revealTargets=[...document.querySelectorAll('.hero-copy,.hero-photo,.service-item,.section-head,.filter-row,.project-card,.about-grid>*,.price-card,.review-box,.step,.contact-grid>*,footer .footer-inner')];revealTargets.forEach((element,index)=>{element.classList.add('scroll-reveal');element.style.setProperty('--motion-delay',`${(index%4)*55}ms`)});body.classList.add('motion-ready');const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target)}}),{threshold:.14,rootMargin:'0px 0px -36px 0px'});revealTargets.forEach(element=>revealObserver.observe(element))}
     const modal=document.getElementById('projectModal'),modalImage=document.getElementById('modalImage'),modalClose=document.getElementById('modalClose');
